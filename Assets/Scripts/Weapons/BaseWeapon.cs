@@ -7,12 +7,9 @@ public class BaseWeapon : MonoBehaviour {
     public GameObject projectile;
     public GameObject bulletsOut;
     public GameObject reloadingIndicator;
-
-    public bool equipped = true;
-    public string weaponName = "Shot Gone";
-
-    public int projectileCountMax = 3;
-    public int projectileCountMin = 5;
+    
+    public int projectileCountMax = 1;
+    public int projectileCountMin = 1;
     public float reloadTime = 1;
     public float shootInterval = 0.2f;
     public float clipSize = 10;
@@ -33,23 +30,12 @@ public class BaseWeapon : MonoBehaviour {
 
         audioSource = gameObject.GetComponent<AudioSource>();
 
-        if (equipped)
-        {
-            //Equip();
-        }
-        else
-        {
-            Unequip();
-        }
+        
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
-        if (!equipped)
-        {
-            return;
-        }
 
         // Reloading
         if (reloadProgress <= reloadTime)
@@ -64,31 +50,8 @@ public class BaseWeapon : MonoBehaviour {
         // Shooting cooldown
         if (shootIntervalProgress <= shootInterval) shootIntervalProgress += Time.deltaTime;
     }
-
-    //public void Equip()
-    //{
-    //    equipped = true;
-
-    //    if(transform.parent.GetComponent<PlayerController>() != null)
-    //    {
-    //        FindObjectOfType<WeaponUI>().Equip(this);
-    //    }
-    //}
-
-    public void Unequip()
-    {
-        equipped = false;
-    }
-
-    public void AimWeapon(Vector3 target)
-    {
-        Vector3 diff = target - transform.position;
-        diff.Normalize();
-
-        float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
-    }
-
+    
+    
     public virtual void Fire(Vector2 target)
     {
         if(ammoInClip <= 0 || reloadProgress < reloadTime || shootIntervalProgress < shootInterval)
@@ -106,7 +69,7 @@ public class BaseWeapon : MonoBehaviour {
             var projectileGO = Instantiate(projectile, bulletsOut.transform.position, new Quaternion(), null);
             projectileGO.SetActive(true);
             var newProjectile = projectileGO.GetComponent<BaseProjectile>();
-            newProjectile.Fire(target, transform.parent.GetComponent<PlayerController>() != null);
+            newProjectile.Fire(target, transform.parent.parent.GetComponent<PlayerController>() != null);
         }
 
         shootIntervalProgress = 0;

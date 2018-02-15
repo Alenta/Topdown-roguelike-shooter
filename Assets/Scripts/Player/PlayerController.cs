@@ -12,14 +12,21 @@ public class PlayerController : MonoBehaviour {
     public float readyDash = 0f;
     public float dashingdash;
 	public Vector2 thisVelocity;
+    public InventoryTest inventory;
+    public GameObject thing;
 
 
-
-    public BaseWeapon weapon;
+    private BaseWeapon weapon;
+    public GameObject weaponSlot1;
+    public GameObject weaponSlot2;
+    public GameObject activeSlot;
 
 	void Start () {
 		rb = GetComponent<Rigidbody2D>();
-	}
+        
+        activeSlot = weaponSlot1;
+        weapon = activeSlot.transform.GetChild(0).GetComponent<BaseWeapon>(); 
+    }
 
     void Update() {
         //Movement();
@@ -27,10 +34,45 @@ public class PlayerController : MonoBehaviour {
         Dash();
         Weapon();
         CooldownDash();
+        if (Input.GetButtonDown("Jump")){
+            if (activeSlot.transform.GetChild(0).tag == "Unarmed")
+            {
+                Destroy(activeSlot.transform.GetChild(0).gameObject);
+                inventory.AddItem(thing);
+                
+            }
+            else if (activeSlot.transform.GetChild(0).tag == "Weapon")
+            {
+                Destroy(activeSlot.transform.GetChild(0).gameObject);
+                inventory.AddItem(thing);
+                GameObject weapon = Instantiate(thing, thing.transform);
+                
+
+            }
+            
+
+        }
 
         if (dashState == DashState.Dashing)
         {
             Debug.Log("fixthis");
+        }
+        if (Input.GetButtonDown("Change Weapons")) {
+            if (activeSlot == weaponSlot1)
+            {
+                activeSlot = weaponSlot2;
+                weaponSlot1.SetActive(false);
+                weaponSlot2.SetActive(true);
+                weapon = activeSlot.transform.GetChild(0).GetComponent<BaseWeapon>();
+
+            }    
+            else
+            {
+                activeSlot = weaponSlot1;
+                weaponSlot2.SetActive(false);
+                weaponSlot1.SetActive(true);
+                weapon = activeSlot.transform.GetChild(0).GetComponent<BaseWeapon>();
+            }
         }
     }
 
@@ -61,7 +103,8 @@ public class PlayerController : MonoBehaviour {
 
         if (Input.GetKey("a")) { 
             rb.velocity = (movement * speed);
-    }
+        }
+
         if (Input.GetKey("d")) {
             rb.velocity = (movement * speed);
         }
@@ -115,46 +158,45 @@ public class PlayerController : MonoBehaviour {
     
         }
     }
-        void CooldownDash () {
+    void CooldownDash () {
         if (dashState == DashState.Dashing)
         {
             dashState = DashState.Cooldown;
             cooldownDash = 1f;
         }
-            if (dashState == DashState.Cooldown)
-            {
-                cooldownDash -= Time.deltaTime;
-            }
-            if (cooldownDash <= readyDash)
-            {
-                dashState = DashState.Ready;
-            }
-
-            //if (dashTime >= maxDash) {
-                
-            //    dashState = DashState.Ready;
-            //}
+        if (dashState == DashState.Cooldown)
+        {
+            cooldownDash -= Time.deltaTime;
         }
+        if (cooldownDash <= readyDash)
+        {
+            dashState = DashState.Ready;
+        }
+        
+    }
     
     
     //Aim and fire weapon on mouse 0
-        void Weapon() { 
-        if(weapon != null)
+    void Weapon() { 
+        if(activeSlot.GetComponentInChildren<BaseWeapon>() != null)
         {
-            weapon.AimWeapon(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-
             if (Input.GetMouseButton(0))
             {
                 Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 mousePos.z = 0;
                 weapon.Fire(mousePos);
+                
             }
         }
-	}
+
+
+        
+    }
+}
     
 	public enum DashState {
 		Ready,
 		Dashing,
 		Cooldown
 	}
-}
+

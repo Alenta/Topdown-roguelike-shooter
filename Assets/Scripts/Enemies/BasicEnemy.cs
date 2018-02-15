@@ -46,11 +46,7 @@ public class BasicEnemy : MonoBehaviour
         }
         else
         {
-            if(weapon != null)
-            {
-                weapon.AimWeapon(target.position);
-                weapon.Fire(target.position);
-            }
+            
         }
     }
 
