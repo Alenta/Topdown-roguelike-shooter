@@ -3,7 +3,7 @@ using System.Collections;
 
 public class RotateToMouse : MonoBehaviour
 {
-    public GameObject player;
+    private GameObject player;
     public GameObject projectile;
     public GameObject spawnPoint1;
     public Quaternion offset;
@@ -15,6 +15,7 @@ public class RotateToMouse : MonoBehaviour
 
     private void Start() {
         //playerMovement = player.GetComponent<PlayerMovement>();
+        player = this.transform.parent.gameObject;
     }
 
     void Update() {

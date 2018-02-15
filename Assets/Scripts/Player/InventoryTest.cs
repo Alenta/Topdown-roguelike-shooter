@@ -18,6 +18,7 @@ public class InventoryTest : MonoBehaviour {
         if(item.tag == "Weapon")
         {
             GameObject Weapon = Instantiate(item, player.activeSlot.transform);
+            print("Making ONE gun");
         }
         else
         {

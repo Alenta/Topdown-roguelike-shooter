@@ -193,12 +193,6 @@
     <Reference Include="UnityEngine.WindModule">
       <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.WindModule.dll</HintPath>
     </Reference>
-    <Reference Include="Vuforia.UnityExtensions.Editor">
-      <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/VuforiaSupport/Managed/Editor/Vuforia.UnityExtensions.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Vuforia.UnityExtensions">
-      <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/VuforiaSupport/Managed/Runtime/Vuforia.UnityExtensions.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
     </Reference>
@@ -330,6 +324,7 @@
     <Compile Include="Assets\Scripts\Player\RotateToMouse.cs" />
     <Compile Include="Assets\Scripts\Weapons\BaseProjectile.cs" />
     <Compile Include="Assets\Scripts\Weapons\BaseWeapon.cs" />
+    <Compile Include="Assets\Scripts\Weapons\LaserGun.cs" />
     <Compile Include="Assets\Scripts\Weapons\WeaponAnimations.cs" />
     <Compile Include="Assets\Scripts\Weapons\Weapons.cs" />
   </ItemGroup>

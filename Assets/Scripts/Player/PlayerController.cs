@@ -35,20 +35,7 @@ public class PlayerController : MonoBehaviour {
         Weapon();
         CooldownDash();
         if (Input.GetButtonDown("Jump")){
-            if (activeSlot.transform.GetChild(0).tag == "Unarmed")
-            {
-                Destroy(activeSlot.transform.GetChild(0).gameObject);
-                inventory.AddItem(thing);
-                
-            }
-            else if (activeSlot.transform.GetChild(0).tag == "Weapon")
-            {
-                Destroy(activeSlot.transform.GetChild(0).gameObject);
-                inventory.AddItem(thing);
-                GameObject weapon = Instantiate(thing, thing.transform);
-                
-
-            }
+            
             
 
         }
@@ -191,6 +178,31 @@ public class PlayerController : MonoBehaviour {
 
 
         
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Weapon")
+        {
+            if (activeSlot.transform.GetChild(0).tag == "Unarmed")
+            {
+                Destroy(activeSlot.transform.GetChild(0).gameObject);
+                var gunReference = collision.gameObject.GetComponent<LaserGun>().gunReference;
+                inventory.AddItem(gunReference);
+                Destroy(collision.gameObject);
+
+            }
+            //else if (activeSlot.transform.GetChild(0).tag == "Weapon")
+            //{
+            //    var gunReference = collision.gameObject.GetComponent<LaserGun>().gunReference;
+            //    GameObject weapon = Instantiate(activeSlot.transform.GetChild(0).gameObject, gunReference.transform);
+            //    Destroy(activeSlot.transform.GetChild(0).gameObject);
+                
+            //    inventory.AddItem(gunReference);
+                
+
+
+            //}
+        }
     }
 }
     
