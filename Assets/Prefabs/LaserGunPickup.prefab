@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4838397486763830}
   - component: {fileID: 61565984561733264}
   - component: {fileID: 114110843491677684}
+  - component: {fileID: 114556411065335428}
   m_Layer: 0
   m_Name: LaserGunPickup
   m_TagString: Weapon
@@ -53,7 +54,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1125450925721484}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -2.91, y: 2.05, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children:
   - {fileID: 4983823882406906}
@@ -128,6 +129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunReference: {fileID: 1125450925721484, guid: d6bc3e6ca24b38e4db99b8ce270bac51,
     type: 2}
+  pickupReference: {fileID: 1125450925721484}
 --- !u!114 &114225035106812262
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -140,6 +142,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 114577084770118592, guid: def41b79a7dce9f4e9f108e98deba94f, type: 2}
+--- !u!114 &114556411065335428
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1125450925721484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12e1964b41736024a926d5132a92b273, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory: 0
+  openable: 0
+  locked: 0
+  equippable: 1
+  ItemNeeded: {fileID: 0}
 --- !u!212 &212634064844807496
 SpriteRenderer:
   m_ObjectHideFlags: 1

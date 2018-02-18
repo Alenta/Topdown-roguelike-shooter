@@ -313,19 +313,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Common\Health.cs" />
+    <Compile Include="Assets\Scripts\Common\InteractionObject.cs" />
     <Compile Include="Assets\Scripts\Enemies\BasicEnemy.cs" />
     <Compile Include="Assets\Scripts\Enemies\EnemyMovement.cs" />
     <Compile Include="Assets\Scripts\Enemies\JumpyEnemy.cs" />
     <Compile Include="Assets\Scripts\Enemies\SlurgfuckAnimations.cs" />
     <Compile Include="Assets\Scripts\Player\CamereMovement.cs" />
+    <Compile Include="Assets\Scripts\Player\Inventory.cs" />
     <Compile Include="Assets\Scripts\Player\InventoryTest.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerAnimations.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerInteract.cs" />
     <Compile Include="Assets\Scripts\Player\RotateToMouse.cs" />
     <Compile Include="Assets\Scripts\Weapons\BaseProjectile.cs" />
     <Compile Include="Assets\Scripts\Weapons\BaseWeapon.cs" />
-    <Compile Include="Assets\Scripts\Weapons\LaserGun.cs" />
     <Compile Include="Assets\Scripts\Weapons\WeaponAnimations.cs" />
+    <Compile Include="Assets\Scripts\Weapons\WeaponReference.cs" />
     <Compile Include="Assets\Scripts\Weapons\Weapons.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

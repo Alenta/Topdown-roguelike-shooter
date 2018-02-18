@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4359183959275884}
   - component: {fileID: 114393218374974538}
   - component: {fileID: 114945926534512250}
+  - component: {fileID: 114170285417057206}
   m_Layer: 0
   m_Name: NotLaserGun
   m_TagString: Weapon
@@ -100,6 +101,20 @@ Transform:
   m_Father: {fileID: 4359183959275884}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114170285417057206
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1344889507234418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faa31005b4ded5a408655d39d4d31eac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunReference: {fileID: 1344889507234418}
+  pickupReference: {fileID: 1125450925721484, guid: 711691a3c842a3540a6805d1f9b3106a,
+    type: 2}
 --- !u!114 &114393218374974538
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -111,7 +126,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fdff39bcc26041c0ad160a6d7b4c45a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1787473239260564, guid: def41b79a7dce9f4e9f108e98deba94f, type: 2}
   projectile: {fileID: 0}
   spawnPoint1: {fileID: 1851598222844762}
   offset: {x: 0, y: 0, z: 90, w: 0}

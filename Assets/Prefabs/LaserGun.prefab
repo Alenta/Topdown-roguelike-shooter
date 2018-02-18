@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4838397486763830}
   - component: {fileID: 114490595115131674}
   - component: {fileID: 114305339590187138}
+  - component: {fileID: 114351302327639326}
   m_Layer: 0
   m_Name: LaserGun
   m_TagString: Weapon
@@ -152,6 +153,20 @@ MonoBehaviour:
   clipSize: 100
   fireSound: {fileID: 8300000, guid: 3d982e1a61f0c224da870536d095714c, type: 3}
   reloadSound: {fileID: 8300000, guid: fe0d1888c51aba248a6a0dfd84f8a465, type: 3}
+--- !u!114 &114351302327639326
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1125450925721484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faa31005b4ded5a408655d39d4d31eac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunReference: {fileID: 1125450925721484}
+  pickupReference: {fileID: 1125450925721484, guid: 2a34a097b08b18544b383a39c741891f,
+    type: 2}
 --- !u!114 &114490595115131674
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -163,7 +178,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fdff39bcc26041c0ad160a6d7b4c45a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1787473239260564, guid: def41b79a7dce9f4e9f108e98deba94f, type: 2}
   projectile: {fileID: 0}
   spawnPoint1: {fileID: 1402330527029236}
   offset: {x: 0, y: 0, z: 90, w: 0}
