@@ -11,7 +11,7 @@ public class Inventory : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        player = GetComponent<PlayerController>();
+        player = this.gameObject.GetComponentInParent<PlayerController>();
         
     }
     public void AddItem(GameObject item)
@@ -21,6 +21,7 @@ public class Inventory : MonoBehaviour
         {
             GameObject weapon = Instantiate(item, player.activeSlot.transform);
             equippedWeapon = weapon;
+            
             print("Make one gun");
         }
         else

@@ -21,7 +21,7 @@ public class PlayerInteract : MonoBehaviour {
         weaponReference = player.activeSlot.transform.GetChild(0).GetComponent<WeaponReference>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         weaponPickedUp = false;
 
@@ -33,7 +33,7 @@ public class PlayerInteract : MonoBehaviour {
             {
                 inventory.AddItem(currentInterObj);
             }
-            if (currentInterObjScript.equippable)
+            if (currentInterObjScript.equippable && currentInterObj != null)
             {
 
                 oldWeapon = player.activeSlot.transform.GetChild(0).GetComponent<WeaponReference>().pickupReference;
@@ -42,6 +42,7 @@ public class PlayerInteract : MonoBehaviour {
                 inventory.AddItem(weapon);
                 Destroy(player.activeSlot.transform.GetChild(0).gameObject);
                 weaponPickedUp = true;
+                currentInterObj = null;
 
 
             }
@@ -87,7 +88,7 @@ public class PlayerInteract : MonoBehaviour {
             currentInterObj = other.gameObject;
             currentInterObjScript = currentInterObj.GetComponent<InteractionObject>();
         }
-        if (other.gameObject.tag == "Weapon")
+        else if (other.gameObject.tag == "Weapon")
         {
             
             if (player.activeSlot.transform.GetChild(0).tag == "Unarmed")
@@ -116,6 +117,10 @@ public class PlayerInteract : MonoBehaviour {
 
 
         }
+        else
+        {
+            currentInterObj = null;
+        }
     }
     private void OnTriggerStay2D(Collider2D other)
     {
@@ -134,11 +139,11 @@ public class PlayerInteract : MonoBehaviour {
     }
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("InteractableObject"))
+        if (other.CompareTag("InteractableObject") || other.CompareTag("Weapon"))
         {
             if (other.gameObject == currentInterObj)
             {
-
+                print("Thing");
                 currentInterObj = null;
             }
         }

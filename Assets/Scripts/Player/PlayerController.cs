@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour {
 	public Vector2 thisVelocity;
     public Inventory inventory;
     public GameObject thing;
-
+    private GameObject inventoryUI;
 
     private BaseWeapon weapon;
     public GameObject weaponSlot1;
@@ -23,13 +23,13 @@ public class PlayerController : MonoBehaviour {
 
 	void Start () {
 		rb = GetComponent<Rigidbody2D>();
-        
+        inventoryUI = this.transform.GetChild(0).GetChild(0).gameObject;
         activeSlot = weaponSlot1;
         weapon = activeSlot.transform.GetChild(0).GetComponent<BaseWeapon>(); 
     }
 
     void Update() {
-        //Movement();
+        Movement();
         BetterMovement();
         
         Weapon();
@@ -62,7 +62,14 @@ public class PlayerController : MonoBehaviour {
     }
 
     void Movement() {
-
+        if (Input.GetButtonDown("Inventory") && inventoryUI.activeSelf == false) 
+        {
+            inventoryUI.SetActive(true);
+        }
+        else if (Input.GetButtonDown("Inventory") && inventoryUI.activeSelf == true)
+        {
+            inventoryUI.SetActive(false);
+        }
 
 
 

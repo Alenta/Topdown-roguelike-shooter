@@ -19,30 +19,13 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4838397486763830}
-  - component: {fileID: 61565984561733264}
   - component: {fileID: 114110843491677684}
   - component: {fileID: 114556411065335428}
+  - component: {fileID: 212515096040698160}
+  - component: {fileID: 61762317766649016}
   m_Layer: 0
   m_Name: LaserGunPickup
   m_TagString: Weapon
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &1747685138718526
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4983823882406906}
-  - component: {fileID: 212634064844807496}
-  - component: {fileID: 95155505024326296}
-  - component: {fileID: 114225035106812262}
-  m_Layer: 0
-  m_Name: Sprite
-  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -54,27 +37,13 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1125450925721484}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.91, y: 2.05, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
-  m_Children:
-  - {fileID: 4983823882406906}
+  m_LocalPosition: {x: -2.93, y: 2.37, z: 0}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4983823882406906
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1747685138718526}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.011600004, y: 0.13470004, z: 0}
-  m_LocalScale: {x: -0.10000006, y: 0.10000006, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4838397486763830}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &61565984561733264
+--- !u!61 &61762317766649016
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -86,36 +55,19 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.14}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.56, y: 2.56}
+    newSize: {x: 2.56, y: 2.56}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.2, y: 0.32}
+  m_Size: {x: 2.39, y: 1.76}
   m_EdgeRadius: 0
---- !u!95 &95155505024326296
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1747685138718526}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6033c573b8267e34fafa602bb55b3112, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114110843491677684
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -130,18 +82,6 @@ MonoBehaviour:
   gunReference: {fileID: 1125450925721484, guid: d6bc3e6ca24b38e4db99b8ce270bac51,
     type: 2}
   pickupReference: {fileID: 1125450925721484}
---- !u!114 &114225035106812262
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1747685138718526}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9016174139971274297f7d8824539c56, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 114577084770118592, guid: def41b79a7dce9f4e9f108e98deba94f, type: 2}
 --- !u!114 &114556411065335428
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -158,12 +98,12 @@ MonoBehaviour:
   locked: 0
   equippable: 1
   ItemNeeded: {fileID: 0}
---- !u!212 &212634064844807496
+--- !u!212 &212515096040698160
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1747685138718526}
+  m_GameObject: {fileID: 1125450925721484}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
