@@ -143,7 +143,7 @@ public class PlayerInteract : MonoBehaviour {
         {
             if (other.gameObject == currentInterObj)
             {
-                print("Thing");
+
                 currentInterObj = null;
             }
         }
