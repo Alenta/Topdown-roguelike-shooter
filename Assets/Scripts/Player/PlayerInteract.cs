@@ -13,8 +13,10 @@ public class PlayerInteract : MonoBehaviour {
     private GameObject oldWeapon;
     private bool isColliding;
     private GameObject weaponPickup;
+
     private WeaponReference weaponReference;
     private bool weaponPickedUp;
+    public Door door;
     private void Start()
     {
         player = GetComponent<PlayerController>();
@@ -69,8 +71,9 @@ public class PlayerInteract : MonoBehaviour {
                 else
                 {
                     //object is not locked - open the object
-                    Debug.Log(currentInterObj.name + (" is open"));
-
+                    door = currentInterObj.GetComponent<Door>();
+                    door.Open();
+                    print("Stuff");
                 }
             }
         }
@@ -129,7 +132,7 @@ public class PlayerInteract : MonoBehaviour {
             if (weaponPickedUp)
             {
                 Destroy(other.gameObject);
-                print("Destroy one gun");
+                
             }
         }
             
@@ -139,11 +142,11 @@ public class PlayerInteract : MonoBehaviour {
     }
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("InteractableObject") || other.CompareTag("Weapon"))
+        if (other.CompareTag("InteractableObject") || other.CompareTag("Weapon") || other.CompareTag("Door"))
         {
             if (other.gameObject == currentInterObj)
             {
-                print("Thing");
+                
                 currentInterObj = null;
             }
         }

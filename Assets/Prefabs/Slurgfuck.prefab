@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 212930093644311626}
   - component: {fileID: 95487872933192462}
   - component: {fileID: 114624592050845134}
+  - component: {fileID: 114039627215605844}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -304,6 +305,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   viewRange: {fileID: 61098226606342770}
   enemy: {fileID: 1151069831987196}
+--- !u!114 &114039627215605844
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1682460678977884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd6eb208d1f8bcf43b85f41a8a9082d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  yOffset: 0
 --- !u!114 &114138213548483056
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -418,14 +431,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  speed: 60
+  speed: 10
   attackRange: 8
-  attackDamage: 10
   reloadTime: 0
   weapon: {fileID: 0}
   tooCloseToJumpDist: 4
   isJumping: 0
-  jumpSpeed: 800
+  jumpSpeed: 100
   jumpLength: 6
 --- !u!114 &114886724680408190
 MonoBehaviour:
@@ -474,8 +486,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -2054518583
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: aa5f221556840554ba7bd741b8dfadc9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

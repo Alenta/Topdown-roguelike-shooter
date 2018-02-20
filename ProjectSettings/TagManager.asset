@@ -8,6 +8,8 @@ TagManager:
   - Weapon
   - Unarmed
   - InteractableObject
+  - Wall
+  - Door
   layers:
   - Default
   - TransparentFX
@@ -44,4 +46,16 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Floor
+    uniqueID: 3181020985
+    locked: 0
+  - name: Player
+    uniqueID: 2240448713
+    locked: 0
+  - name: Wallfill
+    uniqueID: 1729675
+    locked: 0
+  - name: Wall
+    uniqueID: 1179023549
     locked: 0

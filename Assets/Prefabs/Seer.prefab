@@ -89,7 +89,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4908980521894722}
   - component: {fileID: 212849108369972096}
-  - component: {fileID: 114092762008672288}
   - component: {fileID: 95758307104229424}
   m_Layer: 0
   m_Name: Sprite
@@ -827,24 +826,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &114092762008672288
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1120779465368898}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6281f5907f65236499abad8507484dde, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  forwardZPos: 1
-  backwardZPos: -1
-  turnThreshold: -0.25
-  target: {fileID: 0}
-  isPlayer: 1
-  lookingUp: 0
-  lookDir: {x: 0, y: 0, z: 0}
 --- !u!114 &114174474275633926
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -875,8 +856,6 @@ MonoBehaviour:
   projectile: {fileID: 1874467156212602}
   bulletsOut: {fileID: 1291689761414410}
   reloadingIndicator: {fileID: 1195510233622002}
-  equipped: 1
-  weaponName: Shot Gone
   projectileCountMax: 1
   projectileCountMin: 3
   reloadTime: 3
@@ -895,7 +874,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9016174139971274297f7d8824539c56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 114092762008672288}
+  player: {fileID: 0}
 --- !u!114 &114381337973070514
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1017,7 +996,6 @@ MonoBehaviour:
   target: {fileID: 0}
   speed: 40
   attackRange: 10
-  attackDamage: 10
   reloadTime: 0
   weapon: {fileID: 114178755191788044}
 --- !u!120 &120096248879231418
