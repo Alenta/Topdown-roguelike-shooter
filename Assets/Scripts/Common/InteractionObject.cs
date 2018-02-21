@@ -8,6 +8,10 @@ public class InteractionObject : MonoBehaviour {
     public bool openable;       //if this object can be opened
     public bool locked;         //if this is true then object is locked
     public bool equippable;     //If this item is equippable
+    public bool hasInventory;
+    public bool ammo;
+    public bool bombs;
+    public bool key;
     public GameObject ItemNeeded;       //item needed in order to interact with this item
     
 

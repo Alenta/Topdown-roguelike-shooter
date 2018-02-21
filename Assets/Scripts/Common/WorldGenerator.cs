@@ -16,14 +16,21 @@ public class WorldGenerator : MonoBehaviour {
     public IntRange roomHeight = new IntRange(3, 10);        // The range of heights rooms can have.
     public IntRange corridorLength = new IntRange(6, 10);    // The range of lengths corridors between rooms can have.
     public IntRange numEnemies = new IntRange(5, 10);        // number of enemies.
+    public IntRange numItems = new IntRange(5, 10);
+    public IntRange numChests = new IntRange(1, 2);
     public GameObject[] floorTiles;                           // An array of floor tile prefabs.
     public GameObject[] wallTiles;                            // An array of wall tile prefabs.
     public GameObject[] doorFrontTiles;
     public GameObject[] doorSideTiles;
     public GameObject[] enemyTiles;
+    public GameObject[] itemTiles;
+    public GameObject[] chestTiles;
     public GameObject player;
     public GameObject exit;
+    public int enemyCount = 1;
     private int enemiesCreated;
+    private int itemsCreated;
+    private int chestsCreated;
 
     private TileType[][] tiles;                               // A jagged array of tile types representing the board, like a grid.
     private Room[] rooms;                                     // All the rooms that are created for this board.
@@ -50,8 +57,10 @@ public class WorldGenerator : MonoBehaviour {
     }
     private void Update()
     {
-        Vector3 mousePos = Input.mousePosition;
-        Vector3 pos = Camera.main.ScreenToWorldPoint(mousePos);
+        if (enemyCount < 1)
+        {
+            Instantiate(exit, player.transform.position + Vector3.right*2, Quaternion.identity);
+        }
         
     }
 
@@ -124,8 +133,14 @@ public class WorldGenerator : MonoBehaviour {
                 newPlayer.name = "Player";
             }
             
+            if (i > 10)
+            {
+                if (chestsCreated < numChests.m_Max)
+                {
+                    GameObject newChest = Instantiate(chestTiles[0], new Vector3(rooms[10].xPos, rooms[10].yPos), Quaternion.identity);
+                }
+            }
             
-
         }
         
 
@@ -156,12 +171,23 @@ public class WorldGenerator : MonoBehaviour {
                     tiles[xCoord][yCoord] = TileType.Floor;
                     if (enemiesCreated < numEnemies.m_Max)
                     {
-                        print("Enemies < max");
+                        
                         if (i > 0 && Random.Range(0, 100) > 95)
                         {
-                            print("Making enemy");
+                            
                             tiles[xCoord][yCoord] = TileType.Enemy;
                             enemiesCreated += 1;
+                            enemyCount = enemiesCreated;
+                        }
+                    }
+                    if (itemsCreated < numItems.m_Max)
+                    {
+                        
+                        if (i > 0 && Random.Range(0, 100) > 95)
+                        {
+
+                            InstantiateFromArray(itemTiles, xCoord, yCoord);
+                            itemsCreated += 1;
                         }
                     }
                 }

@@ -16,7 +16,7 @@ public class InventorySlot : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        itemSlot = inventory.inventory[0];
+        itemSlot = inventory.inventory[0]; //flytt denne til en funksjon som kan calles.
         if (itemSlot != null)
         {
             sprite.sprite = inventory.inventory[0].GetComponent<SpriteRenderer>().sprite;

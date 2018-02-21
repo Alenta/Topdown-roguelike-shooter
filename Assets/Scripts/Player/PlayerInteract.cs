@@ -13,7 +13,8 @@ public class PlayerInteract : MonoBehaviour {
     private GameObject oldWeapon;
     private bool isColliding;
     private GameObject weaponPickup;
-
+    private Chest chest;
+    private bool ammoCollected;
     private WeaponReference weaponReference;
     private bool weaponPickedUp;
     public Door door;
@@ -26,7 +27,7 @@ public class PlayerInteract : MonoBehaviour {
     private void FixedUpdate()
     {
         weaponPickedUp = false;
-
+        ammoCollected = false;
         isColliding = false;
         if (Input.GetButtonDown("Interact") && currentInterObj)
         {
@@ -71,11 +72,27 @@ public class PlayerInteract : MonoBehaviour {
                 else
                 {
                     //object is not locked - open the object
+                    
                     door = currentInterObj.GetComponent<Door>();
                     door.Open();
-                    print("Stuff");
+                    
+                    
+                    
+                    
                 }
             }
+            if (currentInterObjScript.hasInventory)
+            {
+                
+                chest = currentInterObj.GetComponent<Chest>();
+                chest.Open();
+            }
+            if (currentInterObjScript.ammo)
+            {
+                inventory.ammo += 20;
+                ammoCollected = true;
+            }
+
         }
     }
 
@@ -135,7 +152,17 @@ public class PlayerInteract : MonoBehaviour {
                 
             }
         }
-            
+        if (other.CompareTag("InteractableObject"))
+        {
+
+            currentInterObj = other.gameObject;
+            currentInterObjScript = currentInterObj.GetComponent<InteractionObject>();
+            if (ammoCollected)
+            {
+                Destroy(other.gameObject);
+            }
+        }
+
 
 
 

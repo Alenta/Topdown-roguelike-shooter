@@ -161,9 +161,10 @@ MonoBehaviour:
   reloadingIndicator: {fileID: 0}
   projectileCountMax: 1
   projectileCountMin: 1
-  reloadTime: 0
-  shootInterval: 0.1
-  clipSize: 100
+  reloadTime: 0.5
+  shootInterval: 0.2
+  clipSize: 7
+  totalAmmo: 0
   fireSound: {fileID: 8300000, guid: 3d982e1a61f0c224da870536d095714c, type: 3}
   reloadSound: {fileID: 8300000, guid: fe0d1888c51aba248a6a0dfd84f8a465, type: 3}
 --- !u!114 &114351302327639326

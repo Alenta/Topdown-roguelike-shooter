@@ -13,11 +13,11 @@ public class BaseWeapon : MonoBehaviour {
     public float reloadTime = 1;
     public float shootInterval = 0.2f;
     public float clipSize = 10;
-
+    private Inventory playerInv;
     internal float reloadProgress = 1000;
     private float shootIntervalProgress = 1000;
     internal float ammoInClip = 10;
-
+    public float totalAmmo;
     private AudioSource audioSource;
     public AudioClip fireSound;
     public AudioClip reloadSound;
@@ -27,6 +27,7 @@ public class BaseWeapon : MonoBehaviour {
         ammoInClip = clipSize;
         shootIntervalProgress = shootInterval + 1;
         reloadProgress = reloadTime + 1;
+        playerInv = this.gameObject.transform.parent.parent.GetComponentInChildren<Inventory>();
 
         audioSource = gameObject.GetComponent<AudioSource>();
 
@@ -37,7 +38,7 @@ public class BaseWeapon : MonoBehaviour {
 	void Update ()
     {
 
-        // Reloading
+        totalAmmo = playerInv.ammo;
         if (reloadProgress <= reloadTime)
         {
             PerformReload();
@@ -54,13 +55,14 @@ public class BaseWeapon : MonoBehaviour {
     
     public virtual void Fire(Vector2 target)
     {
-        if(ammoInClip <= 0 || reloadProgress < reloadTime || shootIntervalProgress < shootInterval)
+        if (ammoInClip <= 0 || reloadProgress < reloadTime || shootIntervalProgress < shootInterval)
         {
             // reloading or waiting
             return;
         }
 
         ammoInClip -= 1;
+        playerInv.ammo -= 1;
         audioSource.PlayOneShot(fireSound);
 
         int projectileCount = Random.Range(projectileCountMin, projectileCountMax);

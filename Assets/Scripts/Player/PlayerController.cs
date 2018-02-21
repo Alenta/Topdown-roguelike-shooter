@@ -6,42 +6,28 @@ public class PlayerController : MonoBehaviour {
 
 	public float speed = 3F;
 	private Rigidbody2D rb;
-
-	
-	public float cooldownDash = 1F;
-    public float readyDash = 0f;
-    public float dashingdash;
 	public Vector2 thisVelocity;
     public Inventory inventory;
-    public GameObject thing;
     private GameObject inventoryUI;
-
     private BaseWeapon weapon;
     public GameObject weaponSlot1;
     public GameObject weaponSlot2;
     public GameObject activeSlot;
+    public GameObject bomb;
 
 	void Start () {
 		rb = GetComponent<Rigidbody2D>();
         inventoryUI = this.transform.GetChild(0).GetChild(0).gameObject;
+        inventory = this.transform.GetChild(0).GetComponent<Inventory>();
         activeSlot = weaponSlot1;
         weapon = activeSlot.transform.GetChild(0).GetComponent<BaseWeapon>(); 
     }
 
-    void Update() {
+    void FixedUpdate() {
         Movement();
         BetterMovement();
-        
         Weapon();
-        
 
-        if (Input.GetButtonDown("Jump")){
-            
-            
-
-        }
-
-        
         if (Input.GetButtonDown("Change Weapons")) {
             if (activeSlot == weaponSlot1)
             {
@@ -69,6 +55,11 @@ public class PlayerController : MonoBehaviour {
         else if (Input.GetButtonDown("Inventory") && inventoryUI.activeSelf == true)
         {
             inventoryUI.SetActive(false);
+        }
+        if (Input.GetButtonDown("Bomb") && inventory.bombs > -1)
+        {
+            
+            Instantiate(bomb, transform.position, transform.rotation);
         }
 
 
@@ -112,7 +103,7 @@ public class PlayerController : MonoBehaviour {
     void Weapon() { 
         if(activeSlot.GetComponentInChildren<BaseWeapon>() != null)
         {
-            if (Input.GetMouseButton(0))
+            if (Input.GetMouseButton(0) && inventory.ammo > 0)
             {
                 Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 mousePos.z = 0;
