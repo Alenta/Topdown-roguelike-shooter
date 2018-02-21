@@ -23,7 +23,7 @@ public class Bomb : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rb.velocity = Vector2.right * 100 * Time.deltaTime;
+        
         timer += Time.deltaTime;
         if (timer > fuse)
         {

@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour {
     public GameObject weaponSlot2;
     public GameObject activeSlot;
     public GameObject bomb;
+    private float throwForce;
 
 	void Start () {
 		rb = GetComponent<Rigidbody2D>();
@@ -56,15 +57,28 @@ public class PlayerController : MonoBehaviour {
         {
             inventoryUI.SetActive(false);
         }
-        if (Input.GetButtonDown("Bomb") && inventory.bombs > -1)
+        if (Input.GetButton("Bomb") && inventory.bombs > -1)
         {
+            if (throwForce < 2)
+            {
+                throwForce += Time.deltaTime;
+            }
             
-            Instantiate(bomb, transform.position, transform.rotation);
+            
+        }
+        if (Input.GetButtonUp("Bomb") && inventory.bombs > -1)
+        {
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mousePos.z = 0;
+            var direction = (mousePos - (Vector3)transform.position);
+            GameObject bo = Instantiate(bomb, transform.position, Quaternion.identity);
+            bo.GetComponent<Rigidbody2D>().AddForce(direction * throwForce, ForceMode2D.Impulse);
+            throwForce = 0;
         }
 
 
-
     }
+    
 
     void BetterMovement()
     {
