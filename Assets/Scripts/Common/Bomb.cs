@@ -10,14 +10,12 @@ public class Bomb : MonoBehaviour
     private float timer;
     private float timer2;
     private bool exploded;
-    private Rigidbody2D rb;
     private GameObject exp;
     private SpriteRenderer sprite;
     // Use this for initialization
     void Start()
     {
         sprite = GetComponent<SpriteRenderer>();
-        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame

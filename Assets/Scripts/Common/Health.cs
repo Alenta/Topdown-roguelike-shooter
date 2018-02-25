@@ -5,21 +5,38 @@ using UnityEngine.UI;
 
 // Controls characters heath. Could be expanded to have things like regen effects
 public class Health : MonoBehaviour {
-    public const int health = 100;
-    public int currentHealth = health;
+    public int health;
+    public int currentHealth;
     public bool isDead;
     public RectTransform healthBar;
 
     public AudioClip deathClip;
     public AudioClip damageTaken;
+    private PlayerAttributes playerStats;
+    private Attributes stats;
 
     private void Start()
     {
-        if(gameObject.tag == "Player")
+        if(this.gameObject.tag == "Player")
+        {
+            playerStats = GetComponent<PlayerAttributes>();
+            health = playerStats.health;
+        }
+        else
+        {
+            stats = GetComponent<Attributes>();
+            health = stats.health;
+        }
+        
+        
+
+        currentHealth = health;
+        if (gameObject.tag == "Player")
         {
             healthBar = GameObject.FindGameObjectWithTag("HealthBar").GetComponent<RectTransform>();
         }
     }
+   
 
 
     void OnCollisionEnter(Collision col)
@@ -69,6 +86,6 @@ public class Health : MonoBehaviour {
             //FindObjectOfType<GameOver>().EndGame();
         }
 
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }

@@ -10,7 +10,7 @@ public class InventorySlot : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         sprite = GetComponent<Image>();
-        
+        inventory = GetComponentInParent<Inventory>();
 
     }
 	

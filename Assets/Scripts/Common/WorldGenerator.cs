@@ -128,7 +128,7 @@ public class WorldGenerator : MonoBehaviour {
             }
             if (!playerCreated)
             {
-                GameObject newPlayer = Instantiate(player, new Vector3(rooms[0].xPos, rooms[0].yPos), Quaternion.identity);
+                GameObject newPlayer = Instantiate(player, new Vector3(rooms[0].xPos+1, rooms[0].yPos+1), Quaternion.identity);
                 playerCreated = true;
                 newPlayer.name = "Player";
             }
@@ -137,7 +137,8 @@ public class WorldGenerator : MonoBehaviour {
             {
                 if (chestsCreated < numChests.m_Max)
                 {
-                    GameObject newChest = Instantiate(chestTiles[0], new Vector3(rooms[10].xPos, rooms[10].yPos), Quaternion.identity);
+                    Instantiate(chestTiles[0], new Vector3(rooms[i].xPos, rooms[i].yPos), Quaternion.identity);
+                    chestsCreated += 1;
                 }
             }
             

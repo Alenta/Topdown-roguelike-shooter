@@ -9,13 +9,28 @@ public class InteractionObject : MonoBehaviour {
     public bool locked;         //if this is true then object is locked
     public bool equippable;     //If this item is equippable
     public bool hasInventory;
+    public bool hasAttributes;
+    public bool givesAttributes;
     public bool ammo;
     public bool bombs;
     public bool key;
+    public bool money;
+    public int ammoAmount;
+    public int bombsAmount;
+    public int keyAmount;
+    public bool moneyAmmount;
+    private Attributes stats;
     public GameObject ItemNeeded;       //item needed in order to interact with this item
-    
 
-	void DoInteraction()
+    private void Start()
+    {
+        if (hasAttributes)
+        {
+            stats = GetComponent<Attributes>();
+        }
+    }
+
+    void DoInteraction()
     {
         //''picked up''
         gameObject.SetActive(false);

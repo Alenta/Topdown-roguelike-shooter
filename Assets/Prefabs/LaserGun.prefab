@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 114490595115131674}
   - component: {fileID: 114305339590187138}
   - component: {fileID: 114351302327639326}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LaserGun
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -37,10 +37,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4627145218670046}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BulletsOut
   m_TagString: Untagged
-  m_Icon: {fileID: 8220585740371884164, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 95155505024326296}
   - component: {fileID: 114266402748088964}
   - component: {fileID: 114225035106812262}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82,8 +82,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1125450925721484}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: -0.002000004, y: 0.15999997, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4627145218670046}
@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9016174139971274297f7d8824539c56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 114577084770118592, guid: def41b79a7dce9f4e9f108e98deba94f, type: 2}
+  player: {fileID: 0}
 --- !u!114 &114266402748088964
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -159,6 +159,7 @@ MonoBehaviour:
   projectile: {fileID: 1063727198318190, guid: 9194a1fc8b1dc794a9c67b5a4f5de91f, type: 2}
   bulletsOut: {fileID: 1402330527029236}
   reloadingIndicator: {fileID: 0}
+  baseDamage: 10
   projectileCountMax: 1
   projectileCountMin: 1
   reloadTime: 0.5
@@ -167,6 +168,7 @@ MonoBehaviour:
   totalAmmo: 0
   fireSound: {fileID: 8300000, guid: 3d982e1a61f0c224da870536d095714c, type: 3}
   reloadSound: {fileID: 8300000, guid: fe0d1888c51aba248a6a0dfd84f8a465, type: 3}
+  offset: {x: 0, y: 0, z: 90, w: 0}
 --- !u!114 &114351302327639326
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -194,7 +196,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 0}
   spawnPoint1: {fileID: 1402330527029236}
-  offset: {x: 0, y: 0, z: 90, w: 0}
+  offset: {x: 0, y: 0, z: 0, w: 0}
   speed: 0
   direction: {x: 0, y: 0}
   weaponPos: {fileID: 4838397486763830}

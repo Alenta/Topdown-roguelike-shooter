@@ -10,19 +10,19 @@ public class BaseProjectile : MonoBehaviour {
 
     public float rangeMin = 3;
     public float rangeMax = 5;
-
-    public int damage = 3;
+    private int totalDamage;
 
     public float directionOffset = 10;
-
+    public float life = 100f;
     private float lifetime;
     private float age;
     private List<Vector3> line;
     public float lineWidth = 0.025f;
+    public float rotOffset;
 
     private LineRenderer lineRenderer;
 
-    private bool playerOwned;
+    public bool playerOwned;
 
     // Use this for initialization
     void Start () {
@@ -30,14 +30,14 @@ public class BaseProjectile : MonoBehaviour {
         line = new List<Vector3> { transform.position, transform.position };
         lineRenderer.positionCount = 2;
         lineRenderer.SetPositions(line.ToArray());
-
         lineRenderer.startWidth = 0;
         lineRenderer.endWidth = lineWidth;
+        print(totalDamage);
     }
 
     // Update is called once per frame
     void Update () {
-        if(age < lifetime)
+        if(age < lifetime * 2 && life != 0)
         {
             age += Time.deltaTime;
 
@@ -54,24 +54,24 @@ public class BaseProjectile : MonoBehaviour {
         }
     }
 
-    public void Fire(Vector2 target, bool playerOwned)
+    public void Fire(Vector2 target, bool playerOwned, int damage)
     {
         this.playerOwned = playerOwned;
-
+        totalDamage = damage;
         direction = (target - (Vector2)transform.position);
         direction = Rotate(direction, Random.Range(-directionOffset, directionOffset)).normalized;
         float speed = Random.Range(speedMin, speedMax);
         direction *= speed;
 
-        float distance = Random.Range(rangeMin, rangeMax);
-        lifetime = 1f/*distance / speed*/;
+        //float distance = Random.Range(rangeMin, rangeMax);
+        lifetime = life/*distance / speed*/;
         age = 0;
 
         Vector3 diff = (Vector3)target - transform.position;
         diff.Normalize();
 
         float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
+        transform.rotation = Quaternion.Euler(0f, 0f, rot_z - rotOffset);
     }
 
     private Vector2 Rotate(Vector2 v, float degrees)
@@ -88,36 +88,42 @@ public class BaseProjectile : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        Health health = collider.GetComponent<Health>();
-
-
-        if (playerOwned)
+        if(this.gameObject.tag != "Hook")
         {
-            // player owned ignore collisions with players
-            if (collider.GetComponent<PlayerController>() != null) return;
+            Health health = collider.GetComponent<Health>();
 
-            if (collider.transform.parent != null && 
-                collider.transform.parent.GetComponent<PlayerController>() != null) return;
+
+            if (playerOwned)
+            {
+                // player owned ignore collisions with players
+                if (collider.GetComponent<PlayerController>() != null) return;
+
+                if (collider.transform.parent != null &&
+                    collider.transform.parent.GetComponent<PlayerController>() != null) return;
+            }
+            else
+            {
+                // enemy owned, ingore all other than player
+                if (collider.GetComponent<EnemyMovement>() != null) return;
+                if (collider.transform.parent != null &&
+                    collider.transform.parent.GetComponent<EnemyMovement>() != null) return;
+            }
+
+            // dmg health objects
+            if (health != null)
+            {
+                health.TakeDamage(totalDamage);
+
+            }
+            if (collider.gameObject.tag == "Wall")
+            {
+                Destroy(this.gameObject);
+            }
         }
-        else
-        {
-            // enemy owned, ingore all other than player
-            if (collider.GetComponent<EnemyMovement>() != null) return;
-            if (collider.transform.parent != null &&
-                collider.transform.parent.GetComponent<EnemyMovement>() != null) return;
-        }
-
-        // dmg health objects
-        if (health != null)
-        {
-            health.TakeDamage(damage);
-            Destroy(gameObject);
-        }
+        
 
 
-
-        // Destroy when colliders are hit
-        if (!collider.isTrigger) Destroy(gameObject);
+        
     }
 
 }

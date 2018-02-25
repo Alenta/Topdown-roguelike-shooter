@@ -5,12 +5,14 @@ using UnityEngine;
 public class CamereMovement : MonoBehaviour {
 
     public GameObject player;
+    private Camera cam;
+    public Vector3 offset;
     public float speed = 2.5f;
     public float mouseLookEffect = 2.5f;
 
     private void Start()
     {
-        
+        cam = GetComponent<Camera>();
     }
 
     void Update () {
@@ -35,7 +37,16 @@ public class CamereMovement : MonoBehaviour {
         Vector3 target = player.transform.position + (mouseLookDirection * mouseLookEffect);
         pos = Vector3.Lerp(pos, target, speed * Time.deltaTime);
         pos.z = transform.position.z;
+        Vector3 roundPos = new Vector3(RoundToNearestPixel(pos.x, cam), RoundToNearestPixel(pos.y, cam), pos.z);
+        transform.position = roundPos;
+        
 
-        transform.position = pos;
 	}
+    public static float RoundToNearestPixel(float unityUnits, Camera viewingCamera)
+    {
+        float valueInPixels = (Screen.height / (viewingCamera.orthographicSize * 2)) * unityUnits;
+        valueInPixels = Mathf.Round(valueInPixels);
+        float adjustedUnityUnits = valueInPixels / (Screen.height / (viewingCamera.orthographicSize * 2));
+        return adjustedUnityUnits;
+    }
 }

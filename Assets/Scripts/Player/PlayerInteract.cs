@@ -12,16 +12,18 @@ public class PlayerInteract : MonoBehaviour {
     private GameObject weapon;
     private GameObject oldWeapon;
     private bool isColliding;
-    private GameObject weaponPickup;
     private Chest chest;
     private bool ammoCollected;
     private WeaponReference weaponReference;
     private bool weaponPickedUp;
     public Door door;
+    private PlayerAttributes playerAttributes;
+    private Attributes invAttributes;
     private void Start()
     {
         player = GetComponent<PlayerController>();
-        weaponReference = player.activeSlot.transform.GetChild(0).GetComponent<WeaponReference>();
+        playerAttributes = GetComponent<PlayerAttributes>();
+        
     }
 
     private void FixedUpdate()
@@ -40,7 +42,7 @@ public class PlayerInteract : MonoBehaviour {
             {
 
                 oldWeapon = player.activeSlot.transform.GetChild(0).GetComponent<WeaponReference>().pickupReference;
-                GameObject unequippedWeapon = Instantiate(oldWeapon, player.transform.position, Quaternion.identity);
+                Instantiate(oldWeapon, player.transform.position, Quaternion.identity); //Instantiate gammelt våpen på bakken
 
                 inventory.AddItem(weapon);
                 Destroy(player.activeSlot.transform.GetChild(0).gameObject);
@@ -48,6 +50,10 @@ public class PlayerInteract : MonoBehaviour {
                 currentInterObj = null;
 
 
+            }
+            if (currentInterObjScript.hasAttributes)
+            {
+                currentInterObj.GetComponent<Attributes>();
             }
 
             //check to see if this object can be opened
@@ -114,7 +120,7 @@ public class PlayerInteract : MonoBehaviour {
             if (player.activeSlot.transform.GetChild(0).tag == "Unarmed")
             {
                 weapon = other.gameObject.GetComponent<WeaponReference>().gunReference;
-                weaponPickup = other.gameObject.GetComponent<WeaponReference>().pickupReference;
+                //weaponPickup = other.gameObject.GetComponent<WeaponReference>().pickupReference;
                 
                 
                 inventory.AddItem(weapon);
@@ -130,7 +136,7 @@ public class PlayerInteract : MonoBehaviour {
                 currentInterObj = other.gameObject;
                 currentInterObjScript = currentInterObj.GetComponent<InteractionObject>();
                 weapon = other.gameObject.GetComponent<WeaponReference>().gunReference;
-                weaponPickup = other.gameObject.GetComponent<WeaponReference>().pickupReference;
+                //weaponPickup = other.gameObject.GetComponent<WeaponReference>().pickupReference;
                 
 
             }

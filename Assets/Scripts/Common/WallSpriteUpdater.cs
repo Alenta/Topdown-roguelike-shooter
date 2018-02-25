@@ -20,7 +20,7 @@ public class WallSpriteUpdater : MonoBehaviour {
     private bool dia;
     private bool spritesSet = false;
     private Rigidbody2D rb;
-    private WallSpriteUpdater updater;
+    //private WallSpriteUpdater updater;
     private CircleCollider2D col;
     
 	// Use this for initialization
@@ -30,7 +30,7 @@ public class WallSpriteUpdater : MonoBehaviour {
         yPos = this.transform.position.y;
         rb = GetComponent<Rigidbody2D>();
         rb.simulated = true;
-        updater = GetComponent<WallSpriteUpdater>();
+        //updater = GetComponent<WallSpriteUpdater>();
         col = GetComponent<CircleCollider2D>();
 	}
 	

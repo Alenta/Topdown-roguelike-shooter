@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-	public float speed = 3F;
+    private float speed;
 	private Rigidbody2D rb;
 	public Vector2 thisVelocity;
     public Inventory inventory;
@@ -14,21 +14,31 @@ public class PlayerController : MonoBehaviour {
     public GameObject weaponSlot2;
     public GameObject activeSlot;
     public GameObject bomb;
+    public bool hookFired;
+    public bool hookTouching;
     private float throwForce;
+    private bool rolling;
+    private float rollTimer;
+    public float hookSpeed = 1f;
+    private PlayerAttributes playerStats;
 
 	void Start () {
 		rb = GetComponent<Rigidbody2D>();
+        playerStats = GetComponent<PlayerAttributes>();
+
+        speed = playerStats.moveSpeed;
         inventoryUI = this.transform.GetChild(0).GetChild(0).gameObject;
         inventory = this.transform.GetChild(0).GetComponent<Inventory>();
         activeSlot = weaponSlot1;
         weapon = activeSlot.transform.GetChild(0).GetComponent<BaseWeapon>(); 
+        
     }
 
     void FixedUpdate() {
         Movement();
         BetterMovement();
         Weapon();
-
+        
         if (Input.GetButtonDown("Change Weapons")) {
             if (activeSlot == weaponSlot1)
             {
@@ -75,6 +85,7 @@ public class PlayerController : MonoBehaviour {
             bo.GetComponent<Rigidbody2D>().AddForce(direction * throwForce, ForceMode2D.Impulse);
             throwForce = 0;
         }
+        
 
 
     }
@@ -82,32 +93,57 @@ public class PlayerController : MonoBehaviour {
 
     void BetterMovement()
     {
+        if (rolling)
+        {
+            rollTimer += Time.deltaTime;
+        }
+        
+        if (rollTimer > 0.5f)
+        {
+            rollTimer = 0;
+            rolling = false;
+
+        }
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
         Vector2 movement = new Vector2(horizontal, vertical);
-        rb.velocity = (movement * speed);
-
-
-        if (Input.GetKey("w"))
-        {
-            rb.velocity = (movement * speed);
-        }
-
-        if (Input.GetKey("s")) { 
-            rb.velocity = (movement * speed);
-        }
-
-        if (Input.GetKey("a")) { 
-            rb.velocity = (movement * speed);
-        }
-
-        if (Input.GetKey("d")) {
-            rb.velocity = (movement * speed);
-        }
         
 
 
+        if (!rolling && !hookFired)
+        {
+            rb.velocity = (movement * speed);
+            if (Input.GetKey("w"))
+            {
+                rb.velocity = (movement * speed);
+            }
+
+            if (Input.GetKey("s"))
+            {
+                rb.velocity = (movement * speed);
+            }
+
+            if (Input.GetKey("a"))
+            {
+                rb.velocity = (movement * speed);
+            }
+
+            if (Input.GetKey("d"))
+            {
+                rb.velocity = (movement * speed);
+            }
+        }
+
+        if (Input.GetButtonDown("Roll"))
+        {
+            if (!rolling)
+            {
+                rb.velocity = rb.velocity * 2;
+                rolling = true;
+            }
+        }
+      
 
     }
 
@@ -115,13 +151,13 @@ public class PlayerController : MonoBehaviour {
     
     //Aim and fire weapon on mouse 0
     void Weapon() { 
-        if(activeSlot.GetComponentInChildren<BaseWeapon>() != null)
+        if(activeSlot != null)
         {
             if (Input.GetMouseButton(0) && inventory.ammo > 0)
             {
                 Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 mousePos.z = 0;
-                weapon.Fire(mousePos);
+                weapon.Fire(mousePos, playerStats.damage);
                 
             }
         }
@@ -129,6 +165,7 @@ public class PlayerController : MonoBehaviour {
 
         
     }
+   
     
 }
     
