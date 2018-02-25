@@ -8,6 +8,8 @@ public class JumpyEnemy : BasicEnemy {
     public bool isJumping = false;
     public float jumpSpeed = 60;
     public float jumpLength = 3;
+    private Health health;
+    public WorldGenerator world;
 
     private Vector3 jumpDirection;
     private Vector3 jumpStart;
@@ -15,11 +17,16 @@ public class JumpyEnemy : BasicEnemy {
     protected override void Start()
     {
         base.Start();
+        health = GetComponent<Health>();
     }
 
     protected override void Update()
     {
         base.Update();
+        if(health.currentHealth < 1)
+        {
+            world.enemyCount -= 1;
+        }
     }
 
     public override void MoveToPlayer()

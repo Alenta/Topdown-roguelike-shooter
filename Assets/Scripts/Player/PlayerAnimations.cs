@@ -25,7 +25,7 @@ public class PlayerAnimations : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
         //rb
         animator.SetFloat("velocity", rb.velocity.magnitude);
 

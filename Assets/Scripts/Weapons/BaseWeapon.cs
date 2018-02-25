@@ -3,33 +3,36 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BaseWeapon : MonoBehaviour {
-
+    
     public GameObject projectile;
     public GameObject bulletsOut;
     public GameObject reloadingIndicator;
-    
+    public int baseDamage;
+    private int totalDamage;
     public int projectileCountMax = 1;
     public int projectileCountMin = 1;
     public float reloadTime = 1;
     public float shootInterval = 0.2f;
     public float clipSize = 10;
-
+    private Inventory playerInv;
     internal float reloadProgress = 1000;
     private float shootIntervalProgress = 1000;
     internal float ammoInClip = 10;
-
+    public float totalAmmo;
     private AudioSource audioSource;
     public AudioClip fireSound;
     public AudioClip reloadSound;
+    public Quaternion offset;
 
     // Use this for initialization
     void Start () {
         ammoInClip = clipSize;
         shootIntervalProgress = shootInterval + 1;
         reloadProgress = reloadTime + 1;
-
+        playerInv = this.gameObject.transform.parent.parent.GetComponentInChildren<Inventory>();
+        
         audioSource = gameObject.GetComponent<AudioSource>();
-
+        
         
     }
 	
@@ -37,7 +40,7 @@ public class BaseWeapon : MonoBehaviour {
 	void Update ()
     {
 
-        // Reloading
+        totalAmmo = playerInv.ammo;
         if (reloadProgress <= reloadTime)
         {
             PerformReload();
@@ -52,24 +55,25 @@ public class BaseWeapon : MonoBehaviour {
     }
     
     
-    public virtual void Fire(Vector2 target)
+    public virtual void Fire(Vector2 target, int damage)
     {
-        if(ammoInClip <= 0 || reloadProgress < reloadTime || shootIntervalProgress < shootInterval)
+        if (ammoInClip <= 0 || reloadProgress < reloadTime || shootIntervalProgress < shootInterval)
         {
             // reloading or waiting
             return;
         }
-
+        totalDamage = (damage / 10) * baseDamage;
         ammoInClip -= 1;
+        playerInv.ammo -= 1;
         audioSource.PlayOneShot(fireSound);
-
+        
         int projectileCount = Random.Range(projectileCountMin, projectileCountMax);
         for(int i = 0; i < projectileCount; i++)
         {
-            var projectileGO = Instantiate(projectile, bulletsOut.transform.position, new Quaternion(), null);
+            var projectileGO = Instantiate(projectile, bulletsOut.transform.position, new Quaternion()*offset, null);
             projectileGO.SetActive(true);
             var newProjectile = projectileGO.GetComponent<BaseProjectile>();
-            newProjectile.Fire(target, transform.parent.parent.GetComponent<PlayerController>() != null);
+            newProjectile.Fire(target, transform.parent.parent.GetComponent<PlayerController>() != null,totalDamage);
         }
 
         shootIntervalProgress = 0;

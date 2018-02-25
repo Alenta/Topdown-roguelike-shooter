@@ -172,7 +172,6 @@ GameObject:
   - component: {fileID: 4564686642286360}
   - component: {fileID: 212454514839575556}
   - component: {fileID: 95634549975924864}
-  - component: {fileID: 114426921571554106}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -874,7 +873,6 @@ MonoBehaviour:
   target: {fileID: 0}
   speed: 80
   attackRange: 7.5
-  attackDamage: 10
   reloadTime: 0
   weapon: {fileID: 114677462543416910}
 --- !u!114 &114368242972900750
@@ -896,24 +894,6 @@ MonoBehaviour:
   damage: 10
   directionOffset: 10
   lineWidth: 0.025
---- !u!114 &114426921571554106
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1509506181874064}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6281f5907f65236499abad8507484dde, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  forwardZPos: 1
-  backwardZPos: -1
-  turnThreshold: -0.25
-  target: {fileID: 0}
-  isPlayer: 1
-  lookingUp: 0
-  lookDir: {x: 0, y: 0, z: 0}
 --- !u!114 &114497708482132138
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -941,7 +921,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9016174139971274297f7d8824539c56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 114426921571554106}
+  player: {fileID: 0}
 --- !u!114 &114677462543416910
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -956,8 +936,6 @@ MonoBehaviour:
   projectile: {fileID: 1274032628068754}
   bulletsOut: {fileID: 1061459269790484}
   reloadingIndicator: {fileID: 1519367848278368}
-  equipped: 1
-  weaponName: Shot Gone
   projectileCountMax: 1
   projectileCountMin: 3
   reloadTime: 3
@@ -1053,7 +1031,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9016174139971274297f7d8824539c56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 114426921571554106}
+  player: {fileID: 0}
 --- !u!120 &120953591373465448
 LineRenderer:
   m_ObjectHideFlags: 1

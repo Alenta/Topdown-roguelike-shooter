@@ -8,6 +8,10 @@ public class Inventory : MonoBehaviour
     public GameObject[] inventory = new GameObject[10];
     private PlayerController player;
     public GameObject equippedWeapon;
+    public float ammo = 20;
+    public float bombs;
+    public float keys;
+    public float money;
     // Use this for initialization
     void Start()
     {

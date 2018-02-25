@@ -12,19 +12,24 @@ public class PlayerInteract : MonoBehaviour {
     private GameObject weapon;
     private GameObject oldWeapon;
     private bool isColliding;
-    private GameObject weaponPickup;
+    private Chest chest;
+    private bool ammoCollected;
     private WeaponReference weaponReference;
     private bool weaponPickedUp;
+    public Door door;
+    private PlayerAttributes playerAttributes;
+    private Attributes invAttributes;
     private void Start()
     {
         player = GetComponent<PlayerController>();
-        weaponReference = player.activeSlot.transform.GetChild(0).GetComponent<WeaponReference>();
+        playerAttributes = GetComponent<PlayerAttributes>();
+        
     }
 
     private void FixedUpdate()
     {
         weaponPickedUp = false;
-
+        ammoCollected = false;
         isColliding = false;
         if (Input.GetButtonDown("Interact") && currentInterObj)
         {
@@ -37,7 +42,7 @@ public class PlayerInteract : MonoBehaviour {
             {
 
                 oldWeapon = player.activeSlot.transform.GetChild(0).GetComponent<WeaponReference>().pickupReference;
-                GameObject unequippedWeapon = Instantiate(oldWeapon, player.transform.position, Quaternion.identity);
+                Instantiate(oldWeapon, player.transform.position, Quaternion.identity); //Instantiate gammelt våpen på bakken
 
                 inventory.AddItem(weapon);
                 Destroy(player.activeSlot.transform.GetChild(0).gameObject);
@@ -45,6 +50,10 @@ public class PlayerInteract : MonoBehaviour {
                 currentInterObj = null;
 
 
+            }
+            if (currentInterObjScript.hasAttributes)
+            {
+                currentInterObj.GetComponent<Attributes>();
             }
 
             //check to see if this object can be opened
@@ -69,10 +78,27 @@ public class PlayerInteract : MonoBehaviour {
                 else
                 {
                     //object is not locked - open the object
-                    Debug.Log(currentInterObj.name + (" is open"));
-
+                    
+                    door = currentInterObj.GetComponent<Door>();
+                    door.Open();
+                    
+                    
+                    
+                    
                 }
             }
+            if (currentInterObjScript.hasInventory)
+            {
+                
+                chest = currentInterObj.GetComponent<Chest>();
+                chest.Open();
+            }
+            if (currentInterObjScript.ammo)
+            {
+                inventory.ammo += 20;
+                ammoCollected = true;
+            }
+
         }
     }
 
@@ -94,7 +120,7 @@ public class PlayerInteract : MonoBehaviour {
             if (player.activeSlot.transform.GetChild(0).tag == "Unarmed")
             {
                 weapon = other.gameObject.GetComponent<WeaponReference>().gunReference;
-                weaponPickup = other.gameObject.GetComponent<WeaponReference>().pickupReference;
+                //weaponPickup = other.gameObject.GetComponent<WeaponReference>().pickupReference;
                 
                 
                 inventory.AddItem(weapon);
@@ -110,7 +136,7 @@ public class PlayerInteract : MonoBehaviour {
                 currentInterObj = other.gameObject;
                 currentInterObjScript = currentInterObj.GetComponent<InteractionObject>();
                 weapon = other.gameObject.GetComponent<WeaponReference>().gunReference;
-                weaponPickup = other.gameObject.GetComponent<WeaponReference>().pickupReference;
+                //weaponPickup = other.gameObject.GetComponent<WeaponReference>().pickupReference;
                 
 
             }
@@ -129,21 +155,35 @@ public class PlayerInteract : MonoBehaviour {
             if (weaponPickedUp)
             {
                 Destroy(other.gameObject);
-                print("Destroy one gun");
+                
             }
         }
-            
+        if (other.CompareTag("InteractableObject"))
+        {
+
+            currentInterObj = other.gameObject;
+            currentInterObjScript = currentInterObj.GetComponent<InteractionObject>();
+            if (ammoCollected)
+            {
+                Destroy(other.gameObject);
+            }
+        }
+
 
 
 
     }
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("InteractableObject") || other.CompareTag("Weapon"))
+        if (other.CompareTag("InteractableObject") || other.CompareTag("Weapon") || other.CompareTag("Door"))
         {
             if (other.gameObject == currentInterObj)
             {
+<<<<<<< HEAD
 
+=======
+                
+>>>>>>> 1ecb59035429e4d84f0b1c50a570683fc0f1664b
                 currentInterObj = null;
             }
         }
