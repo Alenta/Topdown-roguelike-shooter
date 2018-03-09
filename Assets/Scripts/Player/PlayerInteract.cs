@@ -207,7 +207,11 @@ public class PlayerInteract : MonoBehaviour {
         {
             if (other.gameObject == currentInterObj)
             {
+<<<<<<< HEAD
+
+=======
                 
+>>>>>>> 1ecb59035429e4d84f0b1c50a570683fc0f1664b
                 currentInterObj = null;
             }
         }
