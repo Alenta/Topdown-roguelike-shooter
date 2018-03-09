@@ -9,7 +9,7 @@ public class JumpyEnemy : BasicEnemy {
     public float jumpSpeed = 60;
     public float jumpLength = 3;
     private Health health;
-    public WorldGenerator world;
+
 
     private Vector3 jumpDirection;
     private Vector3 jumpStart;
@@ -25,7 +25,7 @@ public class JumpyEnemy : BasicEnemy {
         base.Update();
         if(health.currentHealth < 1)
         {
-            world.enemyCount -= 1;
+            
         }
     }
 

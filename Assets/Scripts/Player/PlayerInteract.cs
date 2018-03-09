@@ -14,6 +14,10 @@ public class PlayerInteract : MonoBehaviour {
     private bool isColliding;
     private Chest chest;
     private bool ammoCollected;
+    private float ammo;
+    private float money;
+    private float bombs;
+    private float keys;
     private WeaponReference weaponReference;
     private bool weaponPickedUp;
     public Door door;
@@ -34,6 +38,7 @@ public class PlayerInteract : MonoBehaviour {
         if (Input.GetButtonDown("Interact") && currentInterObj)
         {
             //check to see if this object is to be stored in inventory
+
             if (currentInterObjScript.inventory)
             {
                 inventory.AddItem(currentInterObj);
@@ -53,8 +58,31 @@ public class PlayerInteract : MonoBehaviour {
             }
             if (currentInterObjScript.hasAttributes)
             {
-                currentInterObj.GetComponent<Attributes>();
+                playerAttributes.StatChange(currentInterObj.GetComponent<Attributes>());
+                Destroy(currentInterObjScript.gameObject);
             }
+            if (currentInterObjScript.bombs)
+            {
+                inventory.bombs = inventory.bombs + currentInterObjScript.bombsAmount;
+                Destroy(currentInterObjScript.gameObject);
+            }
+            if (currentInterObjScript.key)
+            {
+                inventory.keys = inventory.keys + currentInterObjScript.keyAmount;
+                Destroy(currentInterObjScript.gameObject);
+            }
+            if (currentInterObjScript.money)
+            {
+                inventory.money = inventory.money + currentInterObjScript.moneyAmmount;
+                Destroy(currentInterObjScript.gameObject);
+            }
+            if (currentInterObjScript.restoreHealth)
+            {
+                playerAttributes.health = playerAttributes.health + currentInterObjScript.restoreHealthAmount;
+                Destroy(currentInterObjScript.gameObject);
+            }
+
+            
 
             //check to see if this object can be opened
             if (currentInterObjScript.openable)

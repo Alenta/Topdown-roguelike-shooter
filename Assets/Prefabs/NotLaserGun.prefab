@@ -38,6 +38,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4045859394281988}
   - component: {fileID: 212925418899969508}
+  - component: {fileID: 114787336979196504}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -132,6 +133,18 @@ MonoBehaviour:
   speed: 0
   direction: {x: 0, y: 0}
   weaponPos: {fileID: 4359183959275884}
+--- !u!114 &114787336979196504
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1372120212376788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd6eb208d1f8bcf43b85f41a8a9082d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  yOffset: 0
 --- !u!114 &114945926534512250
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -146,13 +159,16 @@ MonoBehaviour:
   projectile: {fileID: 1063727198318190, guid: 9194a1fc8b1dc794a9c67b5a4f5de91f, type: 2}
   bulletsOut: {fileID: 1851598222844762}
   reloadingIndicator: {fileID: 0}
+  baseDamage: 0
   projectileCountMax: 20
   projectileCountMin: 20
   reloadTime: 0
   shootInterval: 0.1
   clipSize: 100
+  totalAmmo: 0
   fireSound: {fileID: 8300000, guid: 3d982e1a61f0c224da870536d095714c, type: 3}
   reloadSound: {fileID: 8300000, guid: fe0d1888c51aba248a6a0dfd84f8a465, type: 3}
+  offset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!212 &212925418899969508
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -184,9 +200,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingLayerID: -2054518583
+  m_SortingLayer: 2
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 2486dedadcc7fa84daa64d5dc02572e5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

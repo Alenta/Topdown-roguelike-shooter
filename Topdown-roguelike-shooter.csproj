@@ -324,28 +324,27 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Dungeonizer\Dungeonizer.cs" />
+    <Compile Include="Assets\dungeonizerStarter.cs" />
     <Compile Include="Assets\Rope 2D Editor\Scripts\Rope.cs" />
     <Compile Include="Assets\Scripts\Common\Attributes.cs" />
     <Compile Include="Assets\Scripts\Common\Bomb.cs" />
     <Compile Include="Assets\Scripts\Common\Chest.cs" />
-    <Compile Include="Assets\Scripts\Common\Corridor.cs" />
     <Compile Include="Assets\Scripts\Common\Door.cs" />
     <Compile Include="Assets\Scripts\Common\Explosion.cs" />
     <Compile Include="Assets\Scripts\Common\Health.cs" />
     <Compile Include="Assets\Scripts\Common\InteractionObject.cs" />
     <Compile Include="Assets\Scripts\Common\IntRange.cs" />
     <Compile Include="Assets\Scripts\Common\InventorySlot.cs" />
-    <Compile Include="Assets\Scripts\Common\Room.cs" />
     <Compile Include="Assets\Scripts\Common\SortByY.cs" />
     <Compile Include="Assets\Scripts\Common\WallSpriteUpdater.cs" />
-    <Compile Include="Assets\Scripts\Common\WorldGenerator.cs" />
     <Compile Include="Assets\Scripts\Enemies\BasicEnemy.cs" />
     <Compile Include="Assets\Scripts\Enemies\EnemyMovement.cs" />
     <Compile Include="Assets\Scripts\Enemies\JumpyEnemy.cs" />
     <Compile Include="Assets\Scripts\Enemies\SlurgfuckAnimations.cs" />
     <Compile Include="Assets\Scripts\Player\CamereMovement.cs" />
     <Compile Include="Assets\Scripts\Player\Inventory.cs" />
-    <Compile Include="Assets\Scripts\Player\InventoryTest.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerAbilities.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerAnimations.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerAttributes.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
@@ -353,9 +352,14 @@
     <Compile Include="Assets\Scripts\Player\RotateToMouse.cs" />
     <Compile Include="Assets\Scripts\Weapons\BaseProjectile.cs" />
     <Compile Include="Assets\Scripts\Weapons\BaseWeapon.cs" />
+    <Compile Include="Assets\Scripts\Weapons\Bullet.cs" />
     <Compile Include="Assets\Scripts\Weapons\Grapplehook.cs" />
     <Compile Include="Assets\Scripts\Weapons\Hook.cs" />
     <Compile Include="Assets\Scripts\Weapons\HookRope.cs" />
+    <Compile Include="Assets\Scripts\Weapons\Plasma.cs" />
+    <Compile Include="Assets\Scripts\Weapons\Railgun.cs" />
+    <Compile Include="Assets\Scripts\Weapons\Rocket.cs" />
+    <Compile Include="Assets\Scripts\Weapons\Slug.cs" />
     <Compile Include="Assets\Scripts\Weapons\WeaponAnimations.cs" />
     <Compile Include="Assets\Scripts\Weapons\WeaponReference.cs" />
   </ItemGroup>

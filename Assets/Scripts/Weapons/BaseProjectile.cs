@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class BaseProjectile : MonoBehaviour {
 
+    enum PlayerAbilities
+    {
+        PiercingShot, BouncingShot, ShotSize, BoomerangShot, ZigZagShot, SpiralShot
+    }
+    
     public Vector2 direction;
     public float speedMin = 1;
     public float speedMax = 2;
-
     public float rangeMin = 3;
     public float rangeMax = 5;
-    private int totalDamage;
-
+    public int totalDamage;
+    private Vector2 returnDirection;
     public float directionOffset = 10;
     public float life = 100f;
     private float lifetime;
@@ -19,6 +23,10 @@ public class BaseProjectile : MonoBehaviour {
     private List<Vector3> line;
     public float lineWidth = 0.025f;
     public float rotOffset;
+    public int splitShot;
+    public bool boomerangShot;
+    private Vector2 tar;
+    public bool piercingShot;
 
     private LineRenderer lineRenderer;
 
@@ -27,17 +35,18 @@ public class BaseProjectile : MonoBehaviour {
     // Use this for initialization
     void Start () {
         lineRenderer = gameObject.GetComponent<LineRenderer>();
+        
         line = new List<Vector3> { transform.position, transform.position };
         lineRenderer.positionCount = 2;
         lineRenderer.SetPositions(line.ToArray());
         lineRenderer.startWidth = 0;
         lineRenderer.endWidth = lineWidth;
-        print(totalDamage);
+        
     }
 
     // Update is called once per frame
     void Update () {
-        if(age < lifetime * 2 && life != 0)
+        if (age < lifetime * 2 && life != 0)
         {
             age += Time.deltaTime;
 
@@ -48,21 +57,26 @@ public class BaseProjectile : MonoBehaviour {
 
             lineRenderer.endWidth = lineWidth * ((age / lifetime * -1) + 1);
         }
-        else
+        else if (age > lifetime) //life set to zero bypasses lifetime
         {
             Destroy(gameObject);
+            
         }
     }
 
-    public void Fire(Vector2 target, bool playerOwned, int damage)
+    public void Fire(Vector2 target, bool playerOwned, int damage, int splitshot, bool boomerang, bool piercing)
     {
         this.playerOwned = playerOwned;
+        tar = target;
         totalDamage = damage;
         direction = (target - (Vector2)transform.position);
+        returnDirection = ((Vector2)transform.position - target);
         direction = Rotate(direction, Random.Range(-directionOffset, directionOffset)).normalized;
         float speed = Random.Range(speedMin, speedMax);
         direction *= speed;
-
+        splitShot = splitshot;
+        boomerangShot = boomerang;
+        piercingShot = piercing;
         //float distance = Random.Range(rangeMin, rangeMax);
         lifetime = life/*distance / speed*/;
         age = 0;
@@ -72,6 +86,7 @@ public class BaseProjectile : MonoBehaviour {
 
         float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, rot_z - rotOffset);
+        
     }
 
     private Vector2 Rotate(Vector2 v, float degrees)
@@ -85,45 +100,7 @@ public class BaseProjectile : MonoBehaviour {
         v.y = (sin * tx) + (cos * ty);
         return v;
     }
-
-    private void OnTriggerEnter2D(Collider2D collider)
-    {
-        if(this.gameObject.tag != "Hook")
-        {
-            Health health = collider.GetComponent<Health>();
-
-
-            if (playerOwned)
-            {
-                // player owned ignore collisions with players
-                if (collider.GetComponent<PlayerController>() != null) return;
-
-                if (collider.transform.parent != null &&
-                    collider.transform.parent.GetComponent<PlayerController>() != null) return;
-            }
-            else
-            {
-                // enemy owned, ingore all other than player
-                if (collider.GetComponent<EnemyMovement>() != null) return;
-                if (collider.transform.parent != null &&
-                    collider.transform.parent.GetComponent<EnemyMovement>() != null) return;
-            }
-
-            // dmg health objects
-            if (health != null)
-            {
-                health.TakeDamage(totalDamage);
-
-            }
-            if (collider.gameObject.tag == "Wall")
-            {
-                Destroy(this.gameObject);
-            }
-        }
-        
-
-
-        
-    }
+    
+    
 
 }

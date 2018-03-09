@@ -91,11 +91,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12e1964b41736024a926d5132a92b273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory: 1
+  inventory: 0
   openable: 0
   locked: 0
   equippable: 0
   hasInventory: 0
+  hasAttributes: 0
+  ammo: 0
+  bombs: 0
+  key: 0
+  money: 0
+  restoreHealth: 1
+  ammoAmount: 0
+  bombsAmount: 0
+  keyAmount: 0
+  moneyAmmount: 0
+  restoreHealthAmount: 10
   ItemNeeded: {fileID: 0}
 --- !u!212 &212572785808711718
 SpriteRenderer:

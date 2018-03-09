@@ -6,11 +6,12 @@ public class Hook : MonoBehaviour
 {
     private Rigidbody2D rb;
     private BaseProjectile projectile;
-
+    
     private RotateToMouse rot;
     public bool hitWall;
     public bool hookComplete;
     // Use this for initialization
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -22,10 +23,11 @@ public class Hook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (hookComplete)
+        if (hookComplete && hitWall)
         {
             hitWall = false;
             Destroy(this.gameObject);
+            hookComplete = false;
             
         }
     }
@@ -36,6 +38,7 @@ public class Hook : MonoBehaviour
             projectile.enabled = false;
             rb.bodyType = RigidbodyType2D.Static;
             hitWall = true;
+
         }
         
     }

@@ -6,21 +6,37 @@ using UnityEngine.UI;
 public class InventorySlot : MonoBehaviour {
     public GameObject itemSlot;
     public Inventory inventory;
+    public int slotNr;
+    public bool equipmentSlot;
     private Image sprite;
 	// Use this for initialization
 	void Start () {
         sprite = GetComponent<Image>();
         inventory = GetComponentInParent<Inventory>();
-
+        itemSlot = inventory.inventory[slotNr];
     }
 	
-	// Update is called once per frame
-	void Update () {
-        itemSlot = inventory.inventory[0]; //flytt denne til en funksjon som kan calles.
-        if (itemSlot != null)
+    public void UpdateItemSlot()
+    {
+        if (!equipmentSlot)
         {
-            sprite.sprite = inventory.inventory[0].GetComponent<SpriteRenderer>().sprite;
-            sprite.enabled = true;
+            itemSlot = inventory.inventory[slotNr];
+            if (itemSlot != null)
+            {
+                sprite.sprite = itemSlot.GetComponent<SpriteRenderer>().sprite;
+                sprite.enabled = true;
+            }
         }
+        else
+        {
+            itemSlot = inventory.activeSlots[slotNr];
+            if (itemSlot != null)
+            {
+
+                sprite.sprite = itemSlot.GetComponentInChildren<SpriteRenderer>().sprite;
+                sprite.enabled = true;
+            }
+        }
+        
     }
 }

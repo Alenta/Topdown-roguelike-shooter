@@ -14,15 +14,16 @@ public class PlayerAttributes : MonoBehaviour {
     private int xp;
     private int level;
     private int xpNextLevel;
-    
-    
-	// Use this for initialization
-	void Start () {
+
+    public void StatChange(Attributes attributeMods)
+    {
+        health = health + attributeMods.health;
+        damage = damage + attributeMods.damage;
+        attackSpeed = attackSpeed + attributeMods.attackSpeed;
+        moveSpeed = moveSpeed + attributeMods.moveSpeed;
+        range = range + attributeMods.range;
+        shotSpeed = shotSpeed + attributeMods.shotSpeed;
+        luck = luck + attributeMods.luck;
         
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    }
 }

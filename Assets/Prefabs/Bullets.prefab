@@ -84,9 +84,17 @@ MonoBehaviour:
   locked: 0
   equippable: 0
   hasInventory: 0
+  hasAttributes: 0
   ammo: 1
   bombs: 0
   key: 0
+  money: 0
+  restoreHealth: 0
+  ammoAmount: 10
+  bombsAmount: 0
+  keyAmount: 0
+  moneyAmmount: 0
+  restoreHealthAmount: 0
   ItemNeeded: {fileID: 0}
 --- !u!114 &114742342210350516
 MonoBehaviour:

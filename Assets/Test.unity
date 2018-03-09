@@ -155,7 +155,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -279,6 +279,16 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114867002107965766, guid: 49bb6bf8586d0d9468a8330b63d141f6,
+        type: 2}
+      propertyPath: wallDecoration.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114867002107965766, guid: 49bb6bf8586d0d9468a8330b63d141f6,
+        type: 2}
+      propertyPath: floorDecoration.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4486348350376482, guid: 49bb6bf8586d0d9468a8330b63d141f6, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -321,6 +331,230 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 114867002107965766, guid: 49bb6bf8586d0d9468a8330b63d141f6,
+        type: 2}
+      propertyPath: roomWidth.m_Min
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114867002107965766, guid: 49bb6bf8586d0d9468a8330b63d141f6,
+        type: 2}
+      propertyPath: roomWidth.m_Max
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114867002107965766, guid: 49bb6bf8586d0d9468a8330b63d141f6,
+        type: 2}
+      propertyPath: roomHeight.m_Min
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114867002107965766, guid: 49bb6bf8586d0d9468a8330b63d141f6,
+        type: 2}
+      propertyPath: roomHeight.m_Max
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114867002107965766, guid: 49bb6bf8586d0d9468a8330b63d141f6,
+        type: 2}
+      propertyPath: treasure.m_Min
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114867002107965766, guid: 49bb6bf8586d0d9468a8330b63d141f6,
+        type: 2}
+      propertyPath: treasure.m_Max
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114867002107965766, guid: 49bb6bf8586d0d9468a8330b63d141f6,
+        type: 2}
+      propertyPath: shop.m_Min
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114867002107965766, guid: 49bb6bf8586d0d9468a8330b63d141f6,
+        type: 2}
+      propertyPath: shop.m_Max
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114867002107965766, guid: 49bb6bf8586d0d9468a8330b63d141f6,
+        type: 2}
+      propertyPath: columns
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 114867002107965766, guid: 49bb6bf8586d0d9468a8330b63d141f6,
+        type: 2}
+      propertyPath: rows
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 114867002107965766, guid: 49bb6bf8586d0d9468a8330b63d141f6,
+        type: 2}
+      propertyPath: numRooms.m_Min
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 114867002107965766, guid: 49bb6bf8586d0d9468a8330b63d141f6,
+        type: 2}
+      propertyPath: numRooms.m_Max
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 114867002107965766, guid: 49bb6bf8586d0d9468a8330b63d141f6,
+        type: 2}
+      propertyPath: wallDecoration.Array.data[0]
+      value: 
+      objectReference: {fileID: 1290412513634554, guid: d7723adddbbd09649afdbf2ce2ea8dbe,
+        type: 2}
+    - target: {fileID: 114867002107965766, guid: 49bb6bf8586d0d9468a8330b63d141f6,
+        type: 2}
+      propertyPath: floorDecoration.Array.data[0]
+      value: 
+      objectReference: {fileID: 1398740857892724, guid: 937f293c9acf43e4c97cf571ce3f1191,
+        type: 2}
+    m_RemovedComponents:
+    - {fileID: 114867002107965766, guid: 49bb6bf8586d0d9468a8330b63d141f6, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 49bb6bf8586d0d9468a8330b63d141f6, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1615897988 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1472780866177368, guid: 49bb6bf8586d0d9468a8330b63d141f6,
+    type: 2}
+  m_PrefabInternal: {fileID: 1405022475}
+--- !u!114 &1615897989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1615897988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de9a17229143c7f47a34c9bf15c6052c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startPrefab: {fileID: 1787473239260564, guid: def41b79a7dce9f4e9f108e98deba94f,
+    type: 2}
+  exitPrefab: {fileID: 1279772961894232, guid: 428ece1f4ce3955469689e83251b8839, type: 2}
+  floorPrefab: {fileID: 1549863666414674, guid: 3cf52691146fb1e4c8be318946e31f9f,
+    type: 2}
+  wallPrefab: {fileID: 1505616656429020, guid: 784014af09c789346b72786be10be79e, type: 2}
+  doorPrefab: {fileID: 1304576857168166, guid: 8dc35c0fcfd684245af6eea83b498dd5, type: 2}
+  tresureChest: {fileID: 1154349634436284, guid: 67c554fb75bac2d47af0e05bc195d686,
+    type: 2}
+  chestFloor: {fileID: 0}
+  shopTable: {fileID: 1905059253922582, guid: 07b3aad50662bb044a5d8218f46782e4, type: 2}
+  shopKeeper: {fileID: 0}
+  corridorFloorPrefab: {fileID: 1549863666414674, guid: 3cf52691146fb1e4c8be318946e31f9f,
+    type: 2}
+  cornerPrefab: {fileID: 1505616656429020, guid: 784014af09c789346b72786be10be79e,
+    type: 2}
+  cornerRotation: 0
+  maximumRoomCount: 50
+  roomMargin: 10
+  generate_on_load: 1
+  minRoomSize: 3
+  maxRoomSize: 15
+  tileScaling: 1
+  spawnOptions:
+  - minSpawnCount: 15
+    maxSpawnCount: 30
+    spawnByWall: 0
+    gameObject: {fileID: 1151069831987196, guid: 0745974e50022ae4caff9bf008a5d95d,
+      type: 2}
+    spawnRoom: 0
+  - minSpawnCount: 1
+    maxSpawnCount: 1
+    spawnByWall: 0
+    gameObject: {fileID: 1223794314772294, guid: ff5fae3ccaa1f6a4ba7d4a50f66d4740,
+      type: 2}
+    spawnRoom: 13
+  - minSpawnCount: 0
+    maxSpawnCount: 10
+    spawnByWall: 0
+    gameObject: {fileID: 1290412513634554, guid: d7723adddbbd09649afdbf2ce2ea8dbe,
+      type: 2}
+    spawnRoom: 0
+  - minSpawnCount: 0
+    maxSpawnCount: 20
+    spawnByWall: 0
+    gameObject: {fileID: 1609871667602912, guid: 2ac74c0d9fd254c48badbcbb2cda6925,
+      type: 2}
+    spawnRoom: 0
+  - minSpawnCount: 10
+    maxSpawnCount: 50
+    spawnByWall: 0
+    gameObject: {fileID: 1041576872964284, guid: 7e86813f07434e9478e6a66d5a9be497,
+      type: 2}
+    spawnRoom: 0
+  - minSpawnCount: 5
+    maxSpawnCount: 30
+    spawnByWall: 0
+    gameObject: {fileID: 1279772961894232, guid: 428ece1f4ce3955469689e83251b8839,
+      type: 2}
+    spawnRoom: 0
+  - minSpawnCount: 1
+    maxSpawnCount: 5
+    spawnByWall: 0
+    gameObject: {fileID: 1125450925721484, guid: 711691a3c842a3540a6805d1f9b3106a,
+      type: 2}
+    spawnRoom: 0
+  - minSpawnCount: 1
+    maxSpawnCount: 1
+    spawnByWall: 0
+    gameObject: {fileID: 1315738413020368, guid: c2174c97aa3cdc84c843eb8e453fb7e9,
+      type: 2}
+    spawnRoom: 18
+  - minSpawnCount: 1
+    maxSpawnCount: 20
+    spawnByWall: 0
+    gameObject: {fileID: 1966027334914566, guid: 06d9aad9536a86b4a9fb4dcb45b37766,
+      type: 2}
+    spawnRoom: 0
+  - minSpawnCount: 1
+    maxSpawnCount: 50
+    spawnByWall: 0
+    gameObject: {fileID: 1282964738360732, guid: 051533707bcd2d042ab57580f077e6ee,
+      type: 2}
+    spawnRoom: 0
+  - minSpawnCount: 1
+    maxSpawnCount: 50
+    spawnByWall: 0
+    gameObject: {fileID: 1591967366254720, guid: d3d1d271ec8378b41b29c5824ed70de2,
+      type: 2}
+    spawnRoom: 0
+  - minSpawnCount: 1
+    maxSpawnCount: 30
+    spawnByWall: 0
+    gameObject: {fileID: 1693302310739182, guid: 304a27c53e300b84ba0b9d85aeb3101d,
+      type: 2}
+    spawnRoom: 0
+  - minSpawnCount: 1
+    maxSpawnCount: 30
+    spawnByWall: 0
+    gameObject: {fileID: 1646220137877096, guid: 1c2ef42f82fa11946bcb46c4393a8985,
+      type: 2}
+    spawnRoom: 0
+  - minSpawnCount: 40
+    maxSpawnCount: 80
+    spawnByWall: 1
+    gameObject: {fileID: 1122836728441506, guid: 7486d639c2ebde047810105eb50e0240,
+      type: 2}
+    spawnRoom: 0
+  - minSpawnCount: 0
+    maxSpawnCount: 10
+    spawnByWall: 0
+    gameObject: {fileID: 1775666275598346, guid: a2a3e8f049f214546838f54e943c7829,
+      type: 2}
+    spawnRoom: 0
+  - minSpawnCount: 40
+    maxSpawnCount: 80
+    spawnByWall: 1
+    gameObject: {fileID: 1245754249915938, guid: 05e290e16e0425046a6eec29cc286c7b,
+      type: 2}
+    spawnRoom: 0
+  customRooms:
+  - roomId: 13
+    floorPrefab: {fileID: 164032, guid: 0d4cb62814fc2db46a743b2e135dc9e6, type: 2}
+    wallPrefab: {fileID: 163352, guid: 292c9bde25977a04db99c84c8d3e7a72, type: 2}
+    doorPrefab: {fileID: 146554, guid: 8bea919c61ea7c741836ef50e8c15402, type: 2}
+    cornerPrefab: {fileID: 195698, guid: 6441206226a9f2a478a50efc8fcca6e6, type: 2}
+  - roomId: 18
+    floorPrefab: {fileID: 164032, guid: 0d4cb62814fc2db46a743b2e135dc9e6, type: 2}
+    wallPrefab: {fileID: 163352, guid: 292c9bde25977a04db99c84c8d3e7a72, type: 2}
+    doorPrefab: {fileID: 146554, guid: 8bea919c61ea7c741836ef50e8c15402, type: 2}
+    cornerPrefab: {fileID: 195698, guid: 6441206226a9f2a478a50efc8fcca6e6, type: 2}
+  customRoomType:
+  - Treasure
+  - Shop
+  makeIt3d: 0

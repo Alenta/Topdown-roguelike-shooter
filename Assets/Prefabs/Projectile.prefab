@@ -23,9 +23,10 @@ GameObject:
   - component: {fileID: 120042950099593276}
   - component: {fileID: 58107104123680378}
   - component: {fileID: 50973042535849688}
+  - component: {fileID: 114358550579189582}
   m_Layer: 0
   m_Name: Projectile
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -127,6 +128,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114358550579189582
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1063727198318190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a14a4aa748f59154a956d36ee7122865, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectile: {fileID: 0}
 --- !u!114 &114839770637517256
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -143,11 +156,15 @@ MonoBehaviour:
   speedMax: 14
   rangeMin: 5
   rangeMax: 6
-  damage: 30
+  totalDamage: 0
   directionOffset: 5
   life: 1
   lineWidth: 0.025
   rotOffset: 90
+  splitShot: 0
+  boomerangShot: 0
+  piercingShot: 0
+  playerOwned: 0
 --- !u!114 &114947842180584246
 MonoBehaviour:
   m_ObjectHideFlags: 1

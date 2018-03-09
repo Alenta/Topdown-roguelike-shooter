@@ -837,6 +837,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70a87f373a8af0749a232254c360a8ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 0
   currentHealth: 40
   isDead: 0
   healthBar: {fileID: 224897634616011886}
@@ -856,13 +857,16 @@ MonoBehaviour:
   projectile: {fileID: 1874467156212602}
   bulletsOut: {fileID: 1291689761414410}
   reloadingIndicator: {fileID: 1195510233622002}
+  baseDamage: 0
   projectileCountMax: 1
   projectileCountMin: 3
   reloadTime: 3
   shootInterval: 1
   clipSize: 100
+  totalAmmo: 0
   fireSound: {fileID: 8300000, guid: c0436823d279b2c498dbc5b6850b7a5f, type: 3}
   reloadSound: {fileID: 8300000, guid: 1bcce02871adab8409c993ae77640ed5, type: 3}
+  offset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &114338646756117238
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -891,9 +895,11 @@ MonoBehaviour:
   speedMax: 6
   rangeMin: 5
   rangeMax: 6
-  damage: 15
   directionOffset: 5
+  life: 100
   lineWidth: 0.025
+  rotOffset: 0
+  playerOwned: 0
 --- !u!114 &114539516454592030
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1391,8 +1397,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -2054518583
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b065d64a282fff94b9b04edc38bab358, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

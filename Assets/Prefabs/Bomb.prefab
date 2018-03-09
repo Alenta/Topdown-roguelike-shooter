@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212429146205033498}
   - component: {fileID: 114557934453183304}
   - component: {fileID: 114801912740066910}
+  - component: {fileID: 114635554921909916}
   - component: {fileID: 61542242894941482}
   m_Layer: 0
   m_Name: Bomb
@@ -80,6 +81,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   yOffset: 0
+--- !u!114 &114635554921909916
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1609871667602912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d2317b5c7c50349a861275c8c827b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 10
+  damage: 10
+  attackSpeed: 10
+  moveSpeed: 10
+  range: 10
+  shotSpeed: 10
+  luck: -10
 --- !u!114 &114801912740066910
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -96,9 +115,17 @@ MonoBehaviour:
   locked: 0
   equippable: 0
   hasInventory: 0
+  hasAttributes: 0
   ammo: 0
   bombs: 1
   key: 0
+  money: 0
+  restoreHealth: 0
+  ammoAmount: 0
+  bombsAmount: 1
+  keyAmount: 0
+  moneyAmmount: 0
+  restoreHealthAmount: 0
   ItemNeeded: {fileID: 0}
 --- !u!212 &212429146205033498
 SpriteRenderer:

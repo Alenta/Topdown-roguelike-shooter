@@ -38,7 +38,7 @@ public class Grapplehook : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         RayCast();
         if (joint.distance > 1f)
@@ -51,19 +51,19 @@ public class Grapplehook : MonoBehaviour {
             joint.enabled = false;
             hookCreated = false;
         }
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) && !hookCreated)
         {
             targetPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             targetPos.z = 0;
-            
 
             Fire(targetPos);
             
         }
         
+        
         if (hookCreated)
         {
-            
+
             line.SetPosition(0, transform.position);
             line.SetPosition(1, hookScript.transform.position);
             line.enabled = true;
@@ -92,7 +92,7 @@ public class Grapplehook : MonoBehaviour {
 
         var newProjectile = projectileGO.GetComponent<BaseProjectile>();
         hookScript = projectileGO.GetComponent<Hook>();
-        newProjectile.Fire(target, true,baseDamage);
+        newProjectile.Fire(target, true,baseDamage,1,false,true);
         hookCreated = true;
 
 
@@ -107,7 +107,6 @@ public class Grapplehook : MonoBehaviour {
             {
                 joint.enabled = true;
                 joint.connectedBody = hit.collider.gameObject.GetComponent<Rigidbody2D>();
-
                 joint.distance = Vector2.Distance(transform.position, hit.point);
                 joint.connectedAnchor = hit.point - new Vector2(transform.position.x, hit.collider.transform.position.y);
 

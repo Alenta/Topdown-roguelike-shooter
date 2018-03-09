@@ -24,8 +24,8 @@ public class Health : MonoBehaviour {
         }
         else
         {
-            stats = GetComponent<Attributes>();
-            health = stats.health;
+            //stats = GetComponent<Attributes>();
+            //health = stats.health;
         }
         
         

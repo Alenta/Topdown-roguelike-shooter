@@ -25,9 +25,10 @@ GameObject:
   - component: {fileID: 61434364898071658}
   - component: {fileID: 114741673529195822}
   - component: {fileID: 114287502511942082}
+  - component: {fileID: 70426142558481314}
   m_Layer: 0
   m_Name: Slurgfuck
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -223,7 +224,7 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.07, y: -0.23}
   serializedVersion: 2
   m_Radius: 0.07
 --- !u!61 &61098226606342770
@@ -276,6 +277,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.75051546, y: 0.837842}
   m_EdgeRadius: 0
+--- !u!70 &70426142558481314
+CapsuleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1151069831987196}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.06, y: -0.03}
+  m_Size: {x: 0.69, y: 0.32}
+  m_Direction: 1
 --- !u!95 &95487872933192462
 Animator:
   serializedVersion: 3

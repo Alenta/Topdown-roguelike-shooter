@@ -11,6 +11,8 @@ TagManager:
   - Wall
   - Door
   - Hook
+  - Projectile
+  - Enemy
   layers:
   - Default
   - TransparentFX

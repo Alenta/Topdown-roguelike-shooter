@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
-
-    private float speed;
+    
 	private Rigidbody2D rb;
 	public Vector2 thisVelocity;
     public Inventory inventory;
@@ -14,6 +13,7 @@ public class PlayerController : MonoBehaviour {
     public GameObject weaponSlot2;
     public GameObject activeSlot;
     public GameObject bomb;
+    private Canvas canvas;
     public bool hookFired;
     public bool hookTouching;
     private float throwForce;
@@ -26,12 +26,29 @@ public class PlayerController : MonoBehaviour {
 		rb = GetComponent<Rigidbody2D>();
         playerStats = GetComponent<PlayerAttributes>();
 
-        speed = playerStats.moveSpeed;
+        
         inventoryUI = this.transform.GetChild(0).GetChild(0).gameObject;
+        canvas = inventoryUI.GetComponent<Canvas>();
         inventory = this.transform.GetChild(0).GetComponent<Inventory>();
         activeSlot = weaponSlot1;
         weapon = activeSlot.transform.GetChild(0).GetComponent<BaseWeapon>(); 
         
+    }
+    private void Update()
+    {
+        if (Input.GetButtonDown("Inventory") && canvas.enabled == false)
+        {
+            //inventoryUI.SetActive(true);
+            inventory.UpdateActiveSlots();
+            canvas.enabled = true;
+            Time.timeScale = 0;
+        }
+        else if (Input.GetButtonDown("Inventory") && canvas.enabled == true)
+        {
+            //inventoryUI.SetActive(false);
+            canvas.enabled = false;
+            Time.timeScale = 1;
+        }
     }
 
     void FixedUpdate() {
@@ -59,14 +76,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     void Movement() {
-        if (Input.GetButtonDown("Inventory") && inventoryUI.activeSelf == false) 
-        {
-            inventoryUI.SetActive(true);
-        }
-        else if (Input.GetButtonDown("Inventory") && inventoryUI.activeSelf == true)
-        {
-            inventoryUI.SetActive(false);
-        }
+        
         if (Input.GetButton("Bomb") && inventory.bombs > -1)
         {
             if (throwForce < 2)
@@ -113,25 +123,25 @@ public class PlayerController : MonoBehaviour {
 
         if (!rolling && !hookFired)
         {
-            rb.velocity = (movement * speed);
+            rb.velocity = (movement * playerStats.moveSpeed);
             if (Input.GetKey("w"))
             {
-                rb.velocity = (movement * speed);
+                rb.velocity = (movement * playerStats.moveSpeed);
             }
 
             if (Input.GetKey("s"))
             {
-                rb.velocity = (movement * speed);
+                rb.velocity = (movement * playerStats.moveSpeed);
             }
 
             if (Input.GetKey("a"))
             {
-                rb.velocity = (movement * speed);
+                rb.velocity = (movement * playerStats.moveSpeed);
             }
 
             if (Input.GetKey("d"))
             {
-                rb.velocity = (movement * speed);
+                rb.velocity = (movement * playerStats.moveSpeed);
             }
         }
 
@@ -163,6 +173,10 @@ public class PlayerController : MonoBehaviour {
         }
 
 
+        
+    }
+    void UpdateAttributes()
+    {
         
     }
    

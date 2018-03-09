@@ -1,22 +1,47 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
 
     public GameObject[] inventory = new GameObject[10];
+    public GameObject[] activeSlots = new GameObject[3];
     private PlayerController player;
-    public GameObject equippedWeapon;
+    public GameObject cursor;
+    private GameObject equippedWeapon;
+    private GameObject weaponSlot1;
+    private GameObject weaponSlot2;
+    private GameObject itemSlot1;
+    private Vector2 cursorPos;
     public float ammo = 20;
-    public float bombs;
-    public float keys;
-    public float money;
+    public float bombs = 0;
+    public float keys = 0;
+    public float money = 0;
+    private Text ammoText;
+    private Text bombsText;
+    private Text keysText;
+    private Text moneyText;
+    private InventorySlot inventorySlot;
+    
     // Use this for initialization
     void Start()
     {
         player = this.gameObject.GetComponentInParent<PlayerController>();
-        
+
+        weaponSlot1 = player.transform.GetChild(1).GetChild(0).gameObject;
+
+        weaponSlot2 = player.transform.GetChild(2).GetChild(0).gameObject;
+        itemSlot1 = player.transform.GetChild(3).GetChild(0).gameObject;
+
+        activeSlots[0] = weaponSlot1;
+        activeSlots[1] = weaponSlot2;
+        activeSlots[2] = itemSlot1;
+        ammoText = transform.GetChild(0).GetChild(0).GetChild(4).GetChild(1).GetComponent<Text>();
+        bombsText = transform.GetChild(0).GetChild(0).GetChild(4).GetChild(2).GetComponent<Text>();
+        keysText = transform.GetChild(0).GetChild(0).GetChild(4).GetChild(3).GetComponent<Text>();
+        moneyText = transform.GetChild(0).GetChild(0).GetChild(4).GetChild(4).GetComponent<Text>();
     }
     public void AddItem(GameObject item)
     {
@@ -26,7 +51,6 @@ public class Inventory : MonoBehaviour
             GameObject weapon = Instantiate(item, player.activeSlot.transform);
             equippedWeapon = weapon;
             
-            print("Make one gun");
         }
         else
         {
@@ -36,10 +60,12 @@ public class Inventory : MonoBehaviour
                 if (inventory[i] == null)
                 {
                     inventory[i] = item;
-                    Debug.Log(item.name + " was added!");
+                    Debug.Log(item.name + " was added! " + i);
                     itemAdded = true;
                     //do something with the object
                     item.SendMessage("DoInteraction");
+                    inventorySlot = transform.GetChild(0).GetChild(0).GetChild(0).GetChild(i).GetComponent<InventorySlot>();
+                    inventorySlot.UpdateItemSlot();
                     break;
                 }
 
@@ -97,5 +123,37 @@ public class Inventory : MonoBehaviour
         }
         
     
+    }
+    public void UpdateActiveSlots()
+    {
+        weaponSlot1 = player.transform.GetChild(1).GetChild(0).gameObject;
+        weaponSlot2 = player.transform.GetChild(2).GetChild(0).gameObject;
+        itemSlot1 = player.transform.GetChild(3).GetChild(0).gameObject;
+        activeSlots[0] = weaponSlot1;
+        activeSlots[1] = weaponSlot2;
+        activeSlots[2] = itemSlot1;
+        ammoText.text = "Ammo: " + ammo;
+        bombsText.text = "Bombs: " + bombs;
+        keysText.text = "Keys: " + keys;
+        moneyText.text = "Money: " + money;
+        for (int i = 0; i < 4; i++)
+        {
+            if( transform.GetChild(0).GetChild(0).GetChild(0).GetChild(i).GetComponent<InventorySlot>() != null)
+            {
+                inventorySlot = transform.GetChild(0).GetChild(0).GetChild(0).GetChild(i).GetComponent<InventorySlot>();
+                inventorySlot.UpdateItemSlot();
+            }
+            
+        }
+        for (int i = 1; i < 3; i++)
+        {
+            if (transform.GetChild(0).GetChild(0).GetChild(i).GetComponent<InventorySlot>() != null)
+            {
+                inventorySlot = transform.GetChild(0).GetChild(0).GetChild(i).GetComponent<InventorySlot>();
+                inventorySlot.UpdateItemSlot();
+            }
+
+        }
+
     }
 }
