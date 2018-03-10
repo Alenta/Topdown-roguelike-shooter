@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 58107104123680378}
   - component: {fileID: 50973042535849688}
   - component: {fileID: 114358550579189582}
+  - component: {fileID: 70200241400513354}
   m_Layer: 0
   m_Name: Projectile
   m_TagString: Projectile
@@ -69,7 +70,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1063727198318190}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.017, y: 0.444, z: 0}
+  m_LocalPosition: {x: -0.94, y: 0.444, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4328775733377498}
@@ -88,13 +89,13 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_LinearDrag: 0.1
+  m_AngularDrag: 1
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 7e7cdda837a67724785463713141eb60, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!58 &58107104123680378
 CircleCollider2D:
@@ -108,9 +109,24 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.22}
   serializedVersion: 2
-  m_Radius: 0.1
+  m_Radius: 0.12
+--- !u!70 &70200241400513354
+CapsuleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1063727198318190}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.01, y: 0.11}
+  m_Size: {x: 0.12, y: 0.39}
+  m_Direction: 0
 --- !u!95 &95138146587170982
 Animator:
   serializedVersion: 3
@@ -163,7 +179,9 @@ MonoBehaviour:
   rotOffset: 90
   splitShot: 0
   boomerangShot: 0
+  tar: {x: 0, y: 0}
   piercingShot: 0
+  bouncing: 0
   playerOwned: 0
 --- !u!114 &114947842180584246
 MonoBehaviour:

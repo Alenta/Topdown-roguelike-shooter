@@ -25,8 +25,12 @@ public class BaseProjectile : MonoBehaviour {
     public float rotOffset;
     public int splitShot;
     public bool boomerangShot;
-    private Vector2 tar;
+    public Vector2 tar;
     public bool piercingShot;
+    public bool bouncing;
+    
+    private bool addedForce;
+    private Rigidbody2D rb;
 
     private LineRenderer lineRenderer;
 
@@ -35,48 +39,60 @@ public class BaseProjectile : MonoBehaviour {
     // Use this for initialization
     void Start () {
         lineRenderer = gameObject.GetComponent<LineRenderer>();
-        
+        rb = GetComponent<Rigidbody2D>();
         line = new List<Vector3> { transform.position, transform.position };
         lineRenderer.positionCount = 2;
         lineRenderer.SetPositions(line.ToArray());
         lineRenderer.startWidth = 0;
         lineRenderer.endWidth = lineWidth;
+
         
     }
 
     // Update is called once per frame
-    void Update () {
+    void FixedUpdate () {
         if (age < lifetime * 2 && life != 0)
         {
             age += Time.deltaTime;
-
-            transform.position += (Vector3)direction * Time.deltaTime;
+            if (!addedForce)
+            {
+                AddForce();
+                addedForce = true;
+            }
+            //transform.position += (Vector3)direction * Time.deltaTime;
             line.Add(transform.position);
             lineRenderer.positionCount = line.Count;
             lineRenderer.SetPositions(line.ToArray());
 
             lineRenderer.endWidth = lineWidth * ((age / lifetime * -1) + 1);
         }
+        
         else if (age > lifetime) //life set to zero bypasses lifetime
         {
             Destroy(gameObject);
             
         }
+        
+    }
+    public void AddForce()
+    {
+        rb.AddForce(direction, ForceMode2D.Impulse);
     }
 
-    public void Fire(Vector2 target, bool playerOwned, int damage, int splitshot, bool boomerang, bool piercing)
+    public void Fire(Vector2 target, bool playerOwned, int damage, int splitshot, bool boomerang, bool piercing, bool bouncingShot)
     {
         this.playerOwned = playerOwned;
         tar = target;
         totalDamage = damage;
         direction = (target - (Vector2)transform.position);
-        returnDirection = ((Vector2)transform.position - target);
+        
         direction = Rotate(direction, Random.Range(-directionOffset, directionOffset)).normalized;
         float speed = Random.Range(speedMin, speedMax);
         direction *= speed;
         splitShot = splitshot;
         boomerangShot = boomerang;
         piercingShot = piercing;
+        bouncing = bouncingShot;
         //float distance = Random.Range(rangeMin, rangeMax);
         lifetime = life/*distance / speed*/;
         age = 0;

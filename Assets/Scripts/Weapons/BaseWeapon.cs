@@ -64,7 +64,7 @@ public class BaseWeapon : MonoBehaviour {
     
     public virtual void Fire(Vector2 target, int damage)
     {
-        print("fire2");
+       
         totalShootInterval = shootInterval / (playerAttributes.attackSpeed / 10); //player attackspeed divides interval by one tenth
         if (ammoInClip <= 0 || reloadProgress < reloadTime || shootIntervalProgress < totalShootInterval)
         {
@@ -94,8 +94,9 @@ public class BaseWeapon : MonoBehaviour {
         {
             var projectileGO = Instantiate(projectile, bulletsOut.transform.position, new Quaternion() * offset, null);
             projectileGO.SetActive(true);
+            projectileGO.transform.localScale = new Vector3(playerAbilities.shotSize, playerAbilities.shotSize);
             var newProjectile = projectileGO.GetComponent<BaseProjectile>();
-            newProjectile.Fire(target, transform.parent.parent.GetComponent<PlayerController>() != null, totalDamage, playerAbilities.splitShot, playerAbilities.boomerangShot,playerAbilities.piercingShot);
+            newProjectile.Fire(target, transform.parent.parent.GetComponent<PlayerController>() != null, totalDamage, playerAbilities.splitShot, playerAbilities.boomerangShot,playerAbilities.piercingShot,playerAbilities.bouncingShot);
             
             yield return new WaitForSeconds(0.01f);
 

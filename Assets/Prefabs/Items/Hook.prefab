@@ -65,8 +65,8 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!58 &58928072866812336
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -142,7 +142,9 @@ MonoBehaviour:
   rotOffset: -90
   splitShot: 0
   boomerangShot: 0
+  tar: {x: 0, y: 0}
   piercingShot: 0
+  bouncing: 0
   playerOwned: 0
 --- !u!114 &114405270739400620
 MonoBehaviour:

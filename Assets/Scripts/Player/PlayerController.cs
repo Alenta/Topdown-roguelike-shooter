@@ -77,7 +77,7 @@ public class PlayerController : MonoBehaviour {
 
     void Movement() {
         
-        if (Input.GetButton("Bomb") && inventory.bombs > -1)
+        if (Input.GetButton("Bomb") && inventory.bombs > 0)
         {
             if (throwForce < 2)
             {
@@ -86,13 +86,14 @@ public class PlayerController : MonoBehaviour {
             
             
         }
-        if (Input.GetButtonUp("Bomb") && inventory.bombs > -1)
+        if (Input.GetButtonUp("Bomb") && inventory.bombs > 0)
         {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePos.z = 0;
             var direction = (mousePos - (Vector3)transform.position);
             GameObject bo = Instantiate(bomb, transform.position, Quaternion.identity);
             bo.GetComponent<Rigidbody2D>().AddForce(direction * throwForce, ForceMode2D.Impulse);
+            inventory.bombs -= 1;
             throwForce = 0;
         }
         

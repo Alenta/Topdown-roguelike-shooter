@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour {
 
-    
+    private ContactPoint2D[] contactPoints;
 
     public BaseProjectile projectile;
 
@@ -12,7 +12,7 @@ public class Bullet : MonoBehaviour {
     {
         projectile = GetComponent<BaseProjectile>();
     }
-
+    
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
@@ -31,6 +31,7 @@ public class Bullet : MonoBehaviour {
             if (collider.transform.parent != null &&
                 collider.transform.parent.GetComponent<EnemyMovement>() != null) return;
         }
+
         if (collider.gameObject.tag == "Enemy" || collider.gameObject.tag == "Player" || collider.gameObject.tag == "BreakableObject")
         {
             Health health = collider.GetComponent<Health>();
@@ -44,35 +45,29 @@ public class Bullet : MonoBehaviour {
             }
         }
 
-
-
-
-        if (!projectile.piercingShot) //On impact modifiers
+        if (!projectile.piercingShot && !projectile.boomerangShot && !projectile.bouncing) //On impact modifiers
         {
-            if (!projectile.boomerangShot)
-            {
-                Destroy(this.gameObject);
-            }
-            else
-            {
 
-            }
-
-        }
-
-
-
-        if (collider.gameObject.tag == "Wall")
-        {
             Destroy(this.gameObject);
+            print("Destroy");
+
+
 
         }
 
-        else if (projectile.boomerangShot)                                        //Bouncing shot here...
+
+
+
+
+
+
+
+        if (projectile.boomerangShot)                                        //Boomerang shot here...
         {
-            var newTarget = GameObject.Find("Player").transform.position;
+            //var newTarget = newtarget
+            //projectile.Fire(newTarget, true, projectile.totalDamage, 1, false, projectile.piercingShot, false);
             
-            //Change this to actual bouncing, not following the player
+            
         }
 
 
@@ -81,6 +76,14 @@ public class Bullet : MonoBehaviour {
 
 
 
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        
+        if(!projectile.bouncing && !projectile.boomerangShot)
+        {
+            Destroy(projectile.gameObject);
+        }
     }
 
 

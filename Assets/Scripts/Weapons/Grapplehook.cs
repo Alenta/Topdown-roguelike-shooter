@@ -92,7 +92,7 @@ public class Grapplehook : MonoBehaviour {
 
         var newProjectile = projectileGO.GetComponent<BaseProjectile>();
         hookScript = projectileGO.GetComponent<Hook>();
-        newProjectile.Fire(target, true,baseDamage,1,false,true);
+        newProjectile.Fire(target, true,baseDamage,1,false,true,false);
         hookCreated = true;
 
 
