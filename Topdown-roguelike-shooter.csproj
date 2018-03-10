@@ -330,6 +330,7 @@
     <Compile Include="Assets\Scripts\Common\Abilities.cs" />
     <Compile Include="Assets\Scripts\Common\Attributes.cs" />
     <Compile Include="Assets\Scripts\Common\Bomb.cs" />
+    <Compile Include="Assets\Scripts\Common\BreakableObject.cs" />
     <Compile Include="Assets\Scripts\Common\Chest.cs" />
     <Compile Include="Assets\Scripts\Common\Door.cs" />
     <Compile Include="Assets\Scripts\Common\Explosion.cs" />

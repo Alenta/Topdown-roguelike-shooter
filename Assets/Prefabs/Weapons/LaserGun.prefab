@@ -163,7 +163,7 @@ MonoBehaviour:
   baseDamage: 10
   projectileCountMax: 1
   projectileCountMin: 1
-  reloadTime: 0.5
+  reloadTime: 1
   shootInterval: 0.2
   clipSize: 7
   totalAmmo: 0

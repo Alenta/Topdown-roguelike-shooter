@@ -40,7 +40,7 @@ public class InteractionObject : MonoBehaviour {
         }
         if (shop)
         {
-            itemContained = transform.GetChild(0).gameObject;
+            //itemContained = transform.GetChild(0).gameObject;
             price = Random.Range(0, 100);
         }
     }

@@ -8,12 +8,14 @@ public class Health : MonoBehaviour {
     public int health;
     public int currentHealth;
     public bool isDead;
+    public bool hasHealthBar;
     public RectTransform healthBar;
-
+    public bool dropsItems;
     public AudioClip deathClip;
     public AudioClip damageTaken;
     private PlayerAttributes playerStats;
     private Attributes stats;
+    private Inventory inventory;
 
     private void Start()
     {
@@ -27,7 +29,10 @@ public class Health : MonoBehaviour {
             //stats = GetComponent<Attributes>();
             //health = stats.health;
         }
-        
+        if (dropsItems)
+        {
+            inventory = GetComponent<Inventory>();
+        }
         
 
         currentHealth = health;
@@ -58,7 +63,11 @@ public class Health : MonoBehaviour {
         {
             AudioSource.PlayClipAtPoint(damageTaken, transform.position);
         }
-        healthBar.sizeDelta = new Vector2(currentHealth, healthBar.sizeDelta.y);
+        if (hasHealthBar)
+        {
+            healthBar.sizeDelta = new Vector2(currentHealth, healthBar.sizeDelta.y);
+        }
+        
     }
 
     void Death() {
@@ -85,7 +94,17 @@ public class Health : MonoBehaviour {
         {
             //FindObjectOfType<GameOver>().EndGame();
         }
-
+        if (dropsItems)
+        {
+            foreach (GameObject GO in inventory.inventory)
+            {
+                if(Random.Range(1,100) > 90)
+                {
+                    Instantiate(GO, transform.position + Random.insideUnitSphere, Quaternion.identity);
+                }
+                
+            }
+        }
         gameObject.SetActive(false);
     }
 }

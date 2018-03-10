@@ -1525,7 +1525,7 @@ MonoBehaviour:
   ammo: 5000
   bombs: 0
   keys: 0
-  money: 0
+  money: 5000
 --- !u!114 &114419731004219286
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2235,7 +2235,9 @@ MonoBehaviour:
   health: 0
   currentHealth: 0
   isDead: 0
+  hasHealthBar: 1
   healthBar: {fileID: 224150081545337808}
+  dropsItems: 0
   deathClip: {fileID: 8300000, guid: f610a7b2b8bac354a98eea2581caa931, type: 3}
   damageTaken: {fileID: 8300000, guid: 8b7f66636c48aa04cad2e4ccfa986667, type: 3}
 --- !u!114 &114915032309557886

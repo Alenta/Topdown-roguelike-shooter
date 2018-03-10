@@ -49,7 +49,7 @@ public class PlayerInteract : MonoBehaviour {
             {
 
                 oldWeapon = player.activeSlot.transform.GetChild(0).GetComponent<WeaponReference>().pickupReference;
-                Instantiate(oldWeapon, player.transform.position, Quaternion.identity); //Instantiate gammelt våpen på bakken
+                Instantiate(oldWeapon, player.transform.position + Random.insideUnitSphere, Quaternion.identity); //Instantiate gammelt våpen på bakken
 
                 inventory.AddItem(weapon);
                 Destroy(player.activeSlot.transform.GetChild(0).gameObject);
@@ -85,14 +85,24 @@ public class PlayerInteract : MonoBehaviour {
                             weapon = item.GetComponent<WeaponReference>().gunReference;
                             inventory.AddItem(weapon);
                             Destroy(player.activeSlot.transform.GetChild(0).gameObject);
+                            
                             player.weapon = player.activeSlot.transform.GetChild(0).GetComponent<BaseWeapon>();
+                            Destroy(currentInterObj.gameObject);
                         }
 
                         if (player.activeSlot.transform.GetChild(0).tag == "Weapon")
                         {
-                            currentInterObj = item.gameObject;
-                            currentInterObjScript = currentInterObj.GetComponent<InteractionObject>();
+                           
                             weapon = item.gameObject.GetComponent<WeaponReference>().gunReference;
+                            oldWeapon = player.activeSlot.transform.GetChild(0).GetComponent<WeaponReference>().pickupReference;
+                            Instantiate(oldWeapon, player.transform.position + Random.insideUnitSphere, Quaternion.identity); //Instantiate gammelt våpen på bakken
+
+                            inventory.AddItem(weapon);
+                            Destroy(player.activeSlot.transform.GetChild(0).gameObject);
+                            currentInterObj.gameObject.SetActive(false);
+                            
+                            weaponPickedUp = true;
+                            currentInterObj = null;
                             
 
 

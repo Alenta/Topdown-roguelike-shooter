@@ -172,12 +172,12 @@ MonoBehaviour:
   projectile: {fileID: 1063727198318190, guid: 9194a1fc8b1dc794a9c67b5a4f5de91f, type: 2}
   bulletsOut: {fileID: 1851598222844762}
   reloadingIndicator: {fileID: 0}
-  baseDamage: 0
+  baseDamage: 10
   projectileCountMax: 20
   projectileCountMin: 20
-  reloadTime: 0
+  reloadTime: 1.5
   shootInterval: 0.1
-  clipSize: 100
+  clipSize: 30
   totalAmmo: 0
   fireSound: {fileID: 8300000, guid: 3d982e1a61f0c224da870536d095714c, type: 3}
   reloadSound: {fileID: 8300000, guid: fe0d1888c51aba248a6a0dfd84f8a465, type: 3}

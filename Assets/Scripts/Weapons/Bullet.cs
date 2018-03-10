@@ -31,7 +31,7 @@ public class Bullet : MonoBehaviour {
             if (collider.transform.parent != null &&
                 collider.transform.parent.GetComponent<EnemyMovement>() != null) return;
         }
-        if (collider.gameObject.tag == "Enemy" || collider.gameObject.tag == "Player")
+        if (collider.gameObject.tag == "Enemy" || collider.gameObject.tag == "Player" || collider.gameObject.tag == "BreakableObject")
         {
             Health health = collider.GetComponent<Health>();
 

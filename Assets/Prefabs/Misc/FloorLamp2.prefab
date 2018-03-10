@@ -21,9 +21,11 @@ GameObject:
   - component: {fileID: 4400214837151656}
   - component: {fileID: 212067135326399074}
   - component: {fileID: 114916294774859060}
+  - component: {fileID: 114493411148146244}
+  - component: {fileID: 61096046855198302}
   m_Layer: 0
   m_Name: FloorLamp2
-  m_TagString: Untagged
+  m_TagString: BreakableObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41,6 +43,50 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &61096046855198302
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1122836728441506}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.2571429, y: 2.3428571}
+    newSize: {x: 0.39, y: 0.51}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 2.3428571}
+  m_EdgeRadius: 0
+--- !u!114 &114493411148146244
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1122836728441506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70a87f373a8af0749a232254c360a8ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  currentHealth: 0
+  isDead: 0
+  hasHealthBar: 0
+  healthBar: {fileID: 0}
+  dropsItems: 0
+  deathClip: {fileID: 0}
+  damageTaken: {fileID: 0}
 --- !u!114 &114916294774859060
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -168,6 +168,7 @@ public class PlayerController : MonoBehaviour {
                 Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 mousePos.z = 0;
                 weapon.Fire(mousePos, playerStats.damage);
+                
 
             }
         }
