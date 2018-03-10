@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour {
 	public Vector2 thisVelocity;
     public Inventory inventory;
     private GameObject inventoryUI;
-    private BaseWeapon weapon;
+    public BaseWeapon weapon;
     public GameObject weaponSlot1;
     public GameObject weaponSlot2;
     public GameObject activeSlot;
@@ -168,7 +168,7 @@ public class PlayerController : MonoBehaviour {
                 Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 mousePos.z = 0;
                 weapon.Fire(mousePos, playerStats.damage);
-                
+
             }
         }
 

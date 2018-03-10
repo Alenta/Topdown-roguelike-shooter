@@ -196,7 +196,7 @@ public class Dungeonizer : MonoBehaviour {
                         }
 
                     }
-                    this.roomMarginTemp = Random.RandomRange(0, this.roomMargin - 1);
+                    this.roomMarginTemp = Random.Range(0, this.roomMargin - 1);
 
                     if (direction == "y") {
 						room.x = lastRoom.x + lastRoom.w + Random.Range (3, 5) + this.roomMarginTemp;

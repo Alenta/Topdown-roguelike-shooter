@@ -29,19 +29,8 @@ public class Inventory : MonoBehaviour
     void Start()
     {
         player = this.gameObject.GetComponentInParent<PlayerController>();
-
-        weaponSlot1 = player.transform.GetChild(1).GetChild(0).gameObject;
-
-        weaponSlot2 = player.transform.GetChild(2).GetChild(0).gameObject;
-        itemSlot1 = player.transform.GetChild(3).GetChild(0).gameObject;
-
-        activeSlots[0] = weaponSlot1;
-        activeSlots[1] = weaponSlot2;
-        activeSlots[2] = itemSlot1;
-        ammoText = transform.GetChild(0).GetChild(0).GetChild(4).GetChild(1).GetComponent<Text>();
-        bombsText = transform.GetChild(0).GetChild(0).GetChild(4).GetChild(2).GetComponent<Text>();
-        keysText = transform.GetChild(0).GetChild(0).GetChild(4).GetChild(3).GetComponent<Text>();
-        moneyText = transform.GetChild(0).GetChild(0).GetChild(4).GetChild(4).GetComponent<Text>();
+        
+        
     }
     public void AddItem(GameObject item)
     {
@@ -60,7 +49,7 @@ public class Inventory : MonoBehaviour
                 if (inventory[i] == null)
                 {
                     inventory[i] = item;
-                    Debug.Log(item.name + " was added! " + i);
+                    
                     itemAdded = true;
                     //do something with the object
                     item.SendMessage("DoInteraction");
@@ -124,7 +113,7 @@ public class Inventory : MonoBehaviour
         
     
     }
-    public void UpdateActiveSlots()
+    public void UpdateActiveSlots()     //Denne må fikses, alt under her finner components til equipment + consumables manuelt og oppdaterer de.
     {
         weaponSlot1 = player.transform.GetChild(1).GetChild(0).gameObject;
         weaponSlot2 = player.transform.GetChild(2).GetChild(0).gameObject;
@@ -132,11 +121,16 @@ public class Inventory : MonoBehaviour
         activeSlots[0] = weaponSlot1;
         activeSlots[1] = weaponSlot2;
         activeSlots[2] = itemSlot1;
+        ammoText = transform.GetChild(0).GetChild(0).GetChild(4).GetChild(1).GetComponent<Text>();
+        bombsText = transform.GetChild(0).GetChild(0).GetChild(4).GetChild(2).GetComponent<Text>();
+        keysText = transform.GetChild(0).GetChild(0).GetChild(4).GetChild(3).GetComponent<Text>();
+        moneyText = transform.GetChild(0).GetChild(0).GetChild(4).GetChild(4).GetComponent<Text>();
         ammoText.text = "Ammo: " + ammo;
         bombsText.text = "Bombs: " + bombs;
         keysText.text = "Keys: " + keys;
         moneyText.text = "Money: " + money;
-        for (int i = 0; i < 4; i++)
+
+        for (int i = 0; i < 4; i++)         //Dette er oppdatering av inventory slots
         {
             if( transform.GetChild(0).GetChild(0).GetChild(0).GetChild(i).GetComponent<InventorySlot>() != null)
             {
@@ -145,7 +139,7 @@ public class Inventory : MonoBehaviour
             }
             
         }
-        for (int i = 1; i < 3; i++)
+        for (int i = 1; i < 3; i++)         //Dette er oppdatering av Equipment slots
         {
             if (transform.GetChild(0).GetChild(0).GetChild(i).GetComponent<InventorySlot>() != null)
             {

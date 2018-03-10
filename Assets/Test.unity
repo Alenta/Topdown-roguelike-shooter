@@ -537,10 +537,10 @@ MonoBehaviour:
     gameObject: {fileID: 1775666275598346, guid: a2a3e8f049f214546838f54e943c7829,
       type: 2}
     spawnRoom: 0
-  - minSpawnCount: 40
-    maxSpawnCount: 80
-    spawnByWall: 1
-    gameObject: {fileID: 1245754249915938, guid: 05e290e16e0425046a6eec29cc286c7b,
+  - minSpawnCount: 100
+    maxSpawnCount: 200
+    spawnByWall: 0
+    gameObject: {fileID: 1254867678288726, guid: f84aabe5d2c9f764584604c0818d8625,
       type: 2}
     spawnRoom: 0
   customRooms:

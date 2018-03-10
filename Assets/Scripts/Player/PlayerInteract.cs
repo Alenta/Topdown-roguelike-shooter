@@ -6,7 +6,6 @@ public class PlayerInteract : MonoBehaviour {
 
     public GameObject currentInterObj = null;
     public InteractionObject currentInterObjScript = null;
-    
     public PlayerController player;
     public Inventory inventory;
     private GameObject weapon;
@@ -23,9 +22,12 @@ public class PlayerInteract : MonoBehaviour {
     public Door door;
     private PlayerAttributes playerAttributes;
     private Attributes invAttributes;
+    private PlayerAbilities playerAbilities;
+    private PlayerAbilities invAbilities;
     private void Start()
     {
         player = GetComponent<PlayerController>();
+        playerAbilities = GetComponent<PlayerAbilities>();
         playerAttributes = GetComponent<PlayerAttributes>();
         
     }
@@ -61,26 +63,49 @@ public class PlayerInteract : MonoBehaviour {
                 playerAttributes.StatChange(currentInterObj.GetComponent<Attributes>());
                 Destroy(currentInterObjScript.gameObject);
             }
-            if (currentInterObjScript.bombs)
+            if (currentInterObjScript.hasAbilities)
             {
-                inventory.bombs = inventory.bombs + currentInterObjScript.bombsAmount;
+                print(currentInterObjScript.GetComponent<Abilities>().name);
+                playerAbilities.AbilityChange(currentInterObj.GetComponent<Abilities>());
                 Destroy(currentInterObjScript.gameObject);
             }
-            if (currentInterObjScript.key)
+            if (currentInterObjScript.shop)
             {
-                inventory.keys = inventory.keys + currentInterObjScript.keyAmount;
-                Destroy(currentInterObjScript.gameObject);
+                GameObject item = currentInterObjScript.itemContained;
+                ItemInfo itemInfo = currentInterObjScript.itemContained.GetComponent<ItemInfo>();
+                var totalPrice = currentInterObjScript.price + itemInfo.price;
+                print(totalPrice);
+                if(inventory.money - totalPrice >= 0)
+                {
+                    inventory.money = inventory.money - totalPrice;
+                    if(item.tag == "Weapon")
+                    {
+                        if (player.activeSlot.transform.GetChild(0).tag == "Unarmed")
+                        {
+                            weapon = item.GetComponent<WeaponReference>().gunReference;
+                            inventory.AddItem(weapon);
+                            Destroy(player.activeSlot.transform.GetChild(0).gameObject);
+                            player.weapon = player.activeSlot.transform.GetChild(0).GetComponent<BaseWeapon>();
+                        }
+
+                        if (player.activeSlot.transform.GetChild(0).tag == "Weapon")
+                        {
+                            currentInterObj = item.gameObject;
+                            currentInterObjScript = currentInterObj.GetComponent<InteractionObject>();
+                            weapon = item.gameObject.GetComponent<WeaponReference>().gunReference;
+                            
+
+
+                        }
+                    }
+                    //Destroy(currentInterObjScript.gameObject);
+
+
+                }
+                
+                
             }
-            if (currentInterObjScript.money)
-            {
-                inventory.money = inventory.money + currentInterObjScript.moneyAmmount;
-                Destroy(currentInterObjScript.gameObject);
-            }
-            if (currentInterObjScript.restoreHealth)
-            {
-                playerAttributes.health = playerAttributes.health + currentInterObjScript.restoreHealthAmount;
-                Destroy(currentInterObjScript.gameObject);
-            }
+            
 
             
 
@@ -121,11 +146,7 @@ public class PlayerInteract : MonoBehaviour {
                 chest = currentInterObj.GetComponent<Chest>();
                 chest.Open();
             }
-            if (currentInterObjScript.ammo)
-            {
-                inventory.ammo += 20;
-                ammoCollected = true;
-            }
+            
 
         }
     }
@@ -141,10 +162,41 @@ public class PlayerInteract : MonoBehaviour {
             
             currentInterObj = other.gameObject;
             currentInterObjScript = currentInterObj.GetComponent<InteractionObject>();
+            if (currentInterObjScript.bombs)
+            {
+                inventory.bombs = inventory.bombs + currentInterObjScript.bombsAmount;
+                Destroy(currentInterObjScript.gameObject);
+                currentInterObj = null;
+            }
+            if (currentInterObjScript.key)
+            {
+                inventory.keys = inventory.keys + currentInterObjScript.keyAmount;
+                Destroy(currentInterObjScript.gameObject);
+                currentInterObj = null;
+            }
+            if (currentInterObjScript.money)
+            {
+                inventory.money = inventory.money + currentInterObjScript.moneyAmmount;
+                Destroy(currentInterObjScript.gameObject);
+                currentInterObj = null;
+            }
+            if (currentInterObjScript.restoreHealth)
+            {
+                playerAttributes.health = playerAttributes.health + currentInterObjScript.restoreHealthAmount;
+                Destroy(currentInterObjScript.gameObject);
+                currentInterObj = null;
+            }
+            if (currentInterObjScript.ammo)
+            {
+                inventory.ammo += 20;
+                Destroy(currentInterObjScript.gameObject);
+                ammoCollected = true;
+                currentInterObj = null;
+            }
         }
         else if (other.gameObject.tag == "Weapon")
         {
-            
+
             if (player.activeSlot.transform.GetChild(0).tag == "Unarmed")
             {
                 weapon = other.gameObject.GetComponent<WeaponReference>().gunReference;
@@ -152,7 +204,10 @@ public class PlayerInteract : MonoBehaviour {
                 
                 
                 inventory.AddItem(weapon);
+                
                 Destroy(player.activeSlot.transform.GetChild(0).gameObject);
+                player.weapon = player.activeSlot.transform.GetChild(0).GetComponent<BaseWeapon>();
+
                 Destroy(other.gameObject);
 
 
@@ -175,6 +230,8 @@ public class PlayerInteract : MonoBehaviour {
         {
             currentInterObj = null;
         }
+
+        
     }
     private void OnTriggerStay2D(Collider2D other)
     {

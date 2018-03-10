@@ -327,6 +327,7 @@
     <Compile Include="Assets\Dungeonizer\Dungeonizer.cs" />
     <Compile Include="Assets\dungeonizerStarter.cs" />
     <Compile Include="Assets\Rope 2D Editor\Scripts\Rope.cs" />
+    <Compile Include="Assets\Scripts\Common\Abilities.cs" />
     <Compile Include="Assets\Scripts\Common\Attributes.cs" />
     <Compile Include="Assets\Scripts\Common\Bomb.cs" />
     <Compile Include="Assets\Scripts\Common\Chest.cs" />
@@ -336,6 +337,8 @@
     <Compile Include="Assets\Scripts\Common\InteractionObject.cs" />
     <Compile Include="Assets\Scripts\Common\IntRange.cs" />
     <Compile Include="Assets\Scripts\Common\InventorySlot.cs" />
+    <Compile Include="Assets\Scripts\Common\ItemInfo.cs" />
+    <Compile Include="Assets\Scripts\Common\ShopSlot.cs" />
     <Compile Include="Assets\Scripts\Common\SortByY.cs" />
     <Compile Include="Assets\Scripts\Common\WallSpriteUpdater.cs" />
     <Compile Include="Assets\Scripts\Enemies\BasicEnemy.cs" />
