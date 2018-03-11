@@ -102,7 +102,7 @@ public class Grapplehook : MonoBehaviour {
     {
         if (hookCreated && hookScript.hitWall)
         {
-            hit = Physics2D.Raycast(transform.position, hookScript.transform.position - transform.position, 100f, mask); //100f = distance
+            hit = Physics2D.Raycast(transform.position, hookScript.transform.position - transform.position, 1000f, mask); //100f = distance
             if (hit.collider.gameObject.GetComponent<Hook>() != null)
             {
                 joint.enabled = true;
@@ -111,6 +111,27 @@ public class Grapplehook : MonoBehaviour {
                 joint.connectedAnchor = hit.point - new Vector2(transform.position.x, hit.collider.transform.position.y);
 
             }
+            else
+            {
+                Destroy(hookScript.gameObject);
+                
+                ResetHook();
+                print("Hook is fucked");
+            }
         }
+    }
+    public void ResetHook()
+    {
+        
+        
+        
+        joint.connectedBody = null;
+        
+        hookScript.hookComplete = true;
+        hookScript = null;
+        line.enabled = false;
+        joint.enabled = false;
+        hookCreated = false;
+        readyToFire = true;
     }
 }

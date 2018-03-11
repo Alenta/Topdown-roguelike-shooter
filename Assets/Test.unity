@@ -113,6 +113,79 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &80964405
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 80964406}
+  - component: {fileID: 80964407}
+  m_Layer: 0
+  m_Name: wood background
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &80964406
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 80964405}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 10}
+  m_LocalScale: {x: 3, y: 2, z: 1}
+  m_Children: []
+  m_Father: {fileID: 217115197}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &80964407
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 80964405}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: -206
+  m_Sprite: {fileID: 21300000, guid: 335375a9359705145829f09eb3b4ab72, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 5.12, y: 5.12}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!1 &217115193
 GameObject:
   m_ObjectHideFlags: 0
@@ -193,6 +266,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2061773625}
+  - {fileID: 80964406}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -427,7 +501,7 @@ MonoBehaviour:
   startPrefab: {fileID: 1787473239260564, guid: def41b79a7dce9f4e9f108e98deba94f,
     type: 2}
   exitPrefab: {fileID: 1279772961894232, guid: 428ece1f4ce3955469689e83251b8839, type: 2}
-  floorPrefab: {fileID: 1549863666414674, guid: 3cf52691146fb1e4c8be318946e31f9f,
+  floorPrefab: {fileID: 1662699061609932, guid: c4a06bf85969f3542bdfb9f39a1c7700,
     type: 2}
   wallPrefab: {fileID: 1505616656429020, guid: 784014af09c789346b72786be10be79e, type: 2}
   doorPrefab: {fileID: 1304576857168166, guid: 8dc35c0fcfd684245af6eea83b498dd5, type: 2}
@@ -436,7 +510,7 @@ MonoBehaviour:
   chestFloor: {fileID: 0}
   shopTable: {fileID: 1905059253922582, guid: 07b3aad50662bb044a5d8218f46782e4, type: 2}
   shopKeeper: {fileID: 0}
-  corridorFloorPrefab: {fileID: 1549863666414674, guid: 3cf52691146fb1e4c8be318946e31f9f,
+  corridorFloorPrefab: {fileID: 1662699061609932, guid: c4a06bf85969f3542bdfb9f39a1c7700,
     type: 2}
   cornerPrefab: {fileID: 1505616656429020, guid: 784014af09c789346b72786be10be79e,
     type: 2}

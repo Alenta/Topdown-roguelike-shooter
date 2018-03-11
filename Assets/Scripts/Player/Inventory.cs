@@ -10,7 +10,7 @@ public class Inventory : MonoBehaviour
     public GameObject[] activeSlots = new GameObject[3];
     private PlayerController player;
     public GameObject cursor;
-    private GameObject equippedWeapon;
+
     private GameObject weaponSlot1;
     private GameObject weaponSlot2;
     private GameObject itemSlot1;
@@ -37,8 +37,7 @@ public class Inventory : MonoBehaviour
         bool itemAdded = false;
         if (item.tag == "Weapon")
         {
-            GameObject weapon = Instantiate(item, player.activeSlot.transform);
-            equippedWeapon = weapon;
+            Instantiate(item, player.activeSlot.transform);
             
         }
         else

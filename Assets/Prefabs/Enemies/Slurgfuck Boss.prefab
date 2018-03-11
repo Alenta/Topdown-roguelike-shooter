@@ -58,6 +58,8 @@ GameObject:
   - component: {fileID: 114477033542003180}
   - component: {fileID: 61509574062164686}
   - component: {fileID: 114275345530298612}
+  - component: {fileID: 70230482420693248}
+  - component: {fileID: 70631433489769514}
   m_Layer: 0
   m_Name: Slurgfuck Boss
   m_TagString: Untagged
@@ -153,8 +155,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1223794314772294}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 25.337204, y: -6.09484, z: -0.11998072}
-  m_LocalScale: {x: 4, y: 4, z: 1.3995548}
+  m_LocalPosition: {x: 154.07918, y: 117.47304, z: 0}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children:
   - {fileID: 4983573014720728}
   - {fileID: 4000655671233142}
@@ -170,7 +172,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1869725783462180}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4209747354629126}
@@ -207,7 +209,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!58 &58644923705003798
 CircleCollider2D:
@@ -236,7 +238,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.042796135, y: 0.06962538}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -247,7 +249,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.75051546, y: 0.837842}
+  m_Size: {x: 0.86, y: 0.34}
   m_EdgeRadius: 0
 --- !u!61 &61822615421538086
 BoxCollider2D:
@@ -274,6 +276,36 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 14, y: 14}
   m_EdgeRadius: 0
+--- !u!70 &70230482420693248
+CapsuleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1223794314772294}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.12, y: 0.23}
+  m_Size: {x: 0.16, y: 0.52}
+  m_Direction: 0
+--- !u!70 &70631433489769514
+CapsuleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1223794314772294}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.06, y: -0.03}
+  m_Size: {x: 0.75, y: 0.28}
+  m_Direction: 1
 --- !u!95 &95184420147874010
 Animator:
   serializedVersion: 3
@@ -399,10 +431,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70a87f373a8af0749a232254c360a8ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
-  currentHealth: 40
+  health: 100
+  currentHealth: 100
   isDead: 0
+  hasHealthBar: 0
   healthBar: {fileID: 224836696642225252}
+  dropsItems: 0
   deathClip: {fileID: 8300000, guid: a370438e84ea1184ca6e14d571acfe6a, type: 3}
   damageTaken: {fileID: 8300000, guid: a370438e84ea1184ca6e14d571acfe6a, type: 3}
 --- !u!114 &114802154557321066

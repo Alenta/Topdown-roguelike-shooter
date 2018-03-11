@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35ce459bdf206b348b54879763cab0b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 1063727198318190, guid: 9194a1fc8b1dc794a9c67b5a4f5de91f, type: 2}
+  projectile: {fileID: 1063727198318190, guid: 863260d75d8e9b24296e7f1200781aab, type: 2}
   bulletsOut: {fileID: 1598717836042436}
   reloadingIndicator: {fileID: 0}
   baseDamage: 7

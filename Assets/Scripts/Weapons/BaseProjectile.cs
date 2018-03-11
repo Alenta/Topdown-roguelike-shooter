@@ -28,6 +28,7 @@ public class BaseProjectile : MonoBehaviour {
     public Vector2 tar;
     public bool piercingShot;
     public bool bouncing;
+    public float force;
     
     private bool addedForce;
     private Rigidbody2D rb;
@@ -76,7 +77,7 @@ public class BaseProjectile : MonoBehaviour {
     }
     public void AddForce()
     {
-        rb.AddForce(direction, ForceMode2D.Impulse);
+        rb.AddForce(direction * force, ForceMode2D.Impulse);
     }
 
     public void Fire(Vector2 target, bool playerOwned, int damage, int splitshot, bool boomerang, bool piercing, bool bouncingShot)

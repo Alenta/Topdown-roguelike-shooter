@@ -12,7 +12,7 @@ public class PlayerAbilities : MonoBehaviour {
     public int speedBoost;
     public int healthRegen;
     public int explosionRadius;
-    public int shotSize;
+    public float shotSize;
     public bool piercingShot;
     
     public bool shotRotate;

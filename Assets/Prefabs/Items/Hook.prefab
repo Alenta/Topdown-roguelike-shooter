@@ -76,7 +76,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -1.14, y: -4.09}
@@ -91,7 +91,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.02, y: -2.01}
@@ -145,6 +145,7 @@ MonoBehaviour:
   tar: {x: 0, y: 0}
   piercingShot: 0
   bouncing: 0
+  force: 1
   playerOwned: 0
 --- !u!114 &114405270739400620
 MonoBehaviour:

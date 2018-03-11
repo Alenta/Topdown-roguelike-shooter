@@ -94,6 +94,7 @@ public class PlayerInteract : MonoBehaviour {
                         {
                            
                             weapon = item.gameObject.GetComponent<WeaponReference>().gunReference;
+                            player.weapon = player.activeSlot.transform.GetChild(0).GetComponent<BaseWeapon>();
                             oldWeapon = player.activeSlot.transform.GetChild(0).GetComponent<WeaponReference>().pickupReference;
                             Instantiate(oldWeapon, player.transform.position + Random.insideUnitSphere, Quaternion.identity); //Instantiate gammelt våpen på bakken
 

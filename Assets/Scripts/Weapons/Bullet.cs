@@ -5,6 +5,12 @@ using UnityEngine;
 public class Bullet : MonoBehaviour {
 
     private ContactPoint2D[] contactPoints;
+    public bool bullet;
+    public bool rocket;
+    public bool pellet;
+    public bool particle;
+    public bool energy;
+    public bool grenade;
 
     public BaseProjectile projectile;
 
@@ -37,7 +43,7 @@ public class Bullet : MonoBehaviour {
         {
             Health health = collider.GetComponent<Health>();
 
-
+            print(health);
             // dmg health objects
             if (health != null)
             {
@@ -46,15 +52,7 @@ public class Bullet : MonoBehaviour {
             }
         }
 
-        if (!projectile.piercingShot && !projectile.boomerangShot && !projectile.bouncing) //On impact modifiers
-        {
-
-            Destroy(this.gameObject);
-            print("Destroy");
-
-
-
-        }
+        
 
 
 
@@ -80,10 +78,44 @@ public class Bullet : MonoBehaviour {
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (projectile.playerOwned)
+        {
+            // player owned ignore collisions with players
 
-        if (!projectile.bouncing && !projectile.boomerangShot && collision.gameObject.tag != "Player")
+            if (collision.gameObject.GetComponent<PlayerController>() != null) return;
+
+            if (collision.transform.parent != null &&
+                collision.transform.parent.GetComponent<PlayerController>() != null) return;
+        }
+        
+        else
+        {
+            // enemy owned, ingore all other than player
+            if (collision.gameObject.GetComponent<EnemyMovement>() != null) return;
+            if (collision.transform.parent != null &&
+                collision.transform.parent.GetComponent<EnemyMovement>() != null) return;
+        }
+
+        if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Player" || collision.gameObject.tag == "BreakableObject")
+        {
+            Health health = collision.gameObject.GetComponent<Health>();
+
+            
+            // dmg health objects
+            if (health != null)
+            {
+                health.TakeDamage(projectile.totalDamage);
+                print("damage");
+                if (!projectile.bouncing || !projectile.boomerangShot || !projectile.piercingShot)
+                {
+                    Destroy(projectile.gameObject);
+                }
+            }
+        }
+        if (!projectile.bouncing && !projectile.boomerangShot && collision.gameObject.tag == "Wall")
         {
             Destroy(projectile.gameObject);
+
         }
     }
 

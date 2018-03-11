@@ -6,40 +6,102 @@ public class Hook : MonoBehaviour
 {
     private Rigidbody2D rb;
     private BaseProjectile projectile;
-    
+
     private RotateToMouse rot;
     public bool hitWall;
     public bool hookComplete;
-    // Use this for initialization
 
-    void Start()
+    private void Awake()
     {
+
         rb = GetComponent<Rigidbody2D>();
         projectile = GetComponent<BaseProjectile>();
-        
+
         hookComplete = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (hookComplete && hitWall)
         {
             hitWall = false;
-            Destroy(this.gameObject);
             hookComplete = false;
-            
+            Destroy(this.gameObject);
+
+        }
+        if (!hitWall)
+        {
+            hookComplete = false;
         }
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-        if(collision.gameObject.tag == "Wall")
+        if (projectile.playerOwned)
+        {
+            // player owned ignore collisions with players
+
+            if (collider.GetComponent<PlayerController>() != null) return;
+
+            if (collider.transform.parent != null &&
+                collider.transform.parent.GetComponent<PlayerController>() != null) return;
+        }
+        else
+        {
+            // enemy owned, ingore all other than player
+            if (collider.GetComponent<EnemyMovement>() != null) return;
+            if (collider.transform.parent != null &&
+                collider.transform.parent.GetComponent<EnemyMovement>() != null) return;
+        }
+
+        if (collider.gameObject.tag == "Enemy" || collider.gameObject.tag == "Player" || collider.gameObject.tag == "BreakableObject")
+        {
+            Health health = collider.GetComponent<Health>();
+
+            print(health);
+            // dmg health objects
+            if (collider.gameObject.tag == "BreakableObject")
+            {
+                var x = health.currentHealth;
+                health.TakeDamage(x);
+                
+            }
+            if (health != null && collider.gameObject.tag != "BreakableObject")
+            {
+                health.TakeDamage(projectile.totalDamage);
+
+            }
+        }
+
+        
+
+
+
+
+
+
+
+
+        if (projectile.boomerangShot)                                        //Boomerang shot here...
+        {
+            //var newTarget = newtarget
+            //projectile.Fire(newTarget, true, projectile.totalDamage, 1, false, projectile.piercingShot, false);
+
+
+        }
+
+
+        if (collider.gameObject.tag == "Wall")
         {
             projectile.enabled = false;
             rb.bodyType = RigidbodyType2D.Static;
             hitWall = true;
 
         }
-        
+
+
+
+
     }
+   
 }

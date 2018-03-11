@@ -9,10 +9,10 @@ public class BaseWeapon : MonoBehaviour {
     public GameObject reloadingIndicator;
     private PlayerAbilities playerAbilities;
     private PlayerAttributes playerAttributes;
+    public int spread;
     public int baseDamage;
     private int totalDamage;
-    public int projectileCountMax = 1;
-    public int projectileCountMin = 1;
+    public int projectileCount = 1;
     public float reloadTime = 1;
     public float shootInterval = 0.2f;
     public float clipSize = 10;
@@ -64,15 +64,15 @@ public class BaseWeapon : MonoBehaviour {
     
     public virtual void Fire(Vector2 target, int damage)
     {
-       
-        totalShootInterval = shootInterval / (playerAttributes.attackSpeed / 10); //player attackspeed divides interval by one tenth
+        
+        totalShootInterval = shootInterval / (playerAttributes.attackSpeed / 5); 
         if (ammoInClip <= 0 || reloadProgress < reloadTime || shootIntervalProgress < totalShootInterval)
         {
             // reloading or waiting
             return;
         }
         
-        totalDamage = (damage / 10) * baseDamage;
+        totalDamage = baseDamage * (damage / 5);
         ammoInClip -= 1;
         playerInv.ammo -= 1;
         audioSource.PlayOneShot(fireSound);
@@ -89,16 +89,30 @@ public class BaseWeapon : MonoBehaviour {
     }
     IEnumerator FireBullets(Vector2 target, int damage)
     {
-        int projectileCount = playerAbilities.multiShot;
-        for (int i = 0; i < projectileCount; i++)
+        
+        int projectileCountTot = projectileCount * playerAbilities.multiShot;
+        for (int i = 0; i < projectileCountTot; i++)
         {
-            var projectileGO = Instantiate(projectile, bulletsOut.transform.position, new Quaternion() * offset, null);
+            Vector3 bulletSpawn = bulletsOut.transform.position;
+            if(projectileCountTot > 2)
+            {
+                bulletSpawn = bulletsOut.transform.position + (Random.insideUnitSphere / 2);
+            }
+            else
+            {
+                bulletSpawn = bulletsOut.transform.position;
+            }
+            var projectileGO = Instantiate(projectile, bulletSpawn, new Quaternion() * offset, null);
             projectileGO.SetActive(true);
             projectileGO.transform.localScale = new Vector3(playerAbilities.shotSize, playerAbilities.shotSize);
             var newProjectile = projectileGO.GetComponent<BaseProjectile>();
-            newProjectile.Fire(target, transform.parent.parent.GetComponent<PlayerController>() != null, totalDamage, playerAbilities.splitShot, playerAbilities.boomerangShot,playerAbilities.piercingShot,playerAbilities.bouncingShot);
+            newProjectile.Fire(new Vector2(target.x + Random.Range(-spread/10,+spread/10), target.y + Random.Range(-spread/10, +spread/10)), transform.GetComponentInParent<PlayerController>() != null, totalDamage, playerAbilities.splitShot, playerAbilities.boomerangShot,playerAbilities.piercingShot,playerAbilities.bouncingShot);
             
-            yield return new WaitForSeconds(0.01f);
+            if(projectileCount <= 1)
+            {
+                yield return new WaitForSeconds(0.01f);
+            }
+            
 
         }
     }

@@ -161,18 +161,42 @@ public class PlayerController : MonoBehaviour {
 
     
     //Aim and fire weapon on mouse 0
-    void Weapon() { 
-        if(activeSlot != null)
+    void Weapon() {
+        if (Input.GetMouseButton(0))
         {
-            if (Input.GetMouseButton(0) && inventory.ammo > 0)
+            if(activeSlot != null)
             {
-                Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                mousePos.z = 0;
-                weapon.Fire(mousePos, playerStats.damage);
-                
+                if (weapon != null)
+                {
+                    if (inventory.ammo > 0)
+                    {
+                        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                        mousePos.z = 0;
+                        
+                        weapon.Fire(mousePos, playerStats.damage);
 
+
+                    }
+                }
+
+                
+            }
+            else
+            {
+                
+                if (weaponSlot1.activeSelf == true)
+                {
+                    activeSlot = weaponSlot1;
+                    weapon = activeSlot.transform.GetChild(0).GetComponent<BaseWeapon>();
+                }
+                else
+                {
+                    activeSlot = weaponSlot2;
+                    weapon = activeSlot.transform.GetChild(0).GetComponent<BaseWeapon>();
+                }
             }
         }
+        
 
 
         
