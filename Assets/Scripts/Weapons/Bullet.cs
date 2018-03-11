@@ -19,6 +19,7 @@ public class Bullet : MonoBehaviour {
         if (projectile.playerOwned)
         {
             // player owned ignore collisions with players
+            
             if (collider.GetComponent<PlayerController>() != null) return;
 
             if (collider.transform.parent != null &&
@@ -79,8 +80,8 @@ public class Bullet : MonoBehaviour {
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        
-        if(!projectile.bouncing && !projectile.boomerangShot)
+
+        if (!projectile.bouncing && !projectile.boomerangShot && collision.gameObject.tag != "Player")
         {
             Destroy(projectile.gameObject);
         }

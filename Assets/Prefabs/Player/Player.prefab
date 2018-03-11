@@ -1543,7 +1543,7 @@ MonoBehaviour:
   shotRotate: 0
   burstFire: 0
   bouncingShot: 0
-  boomerangShot: 1
+  boomerangShot: 0
   zigZagShot: 0
   spiralShot: 0
   invulnerability: 0
