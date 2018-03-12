@@ -52,7 +52,7 @@ public class Inventory : MonoBehaviour
                     itemAdded = true;
                     //do something with the object
                     item.SendMessage("DoInteraction");
-                    inventorySlot = transform.GetChild(0).GetChild(0).GetChild(0).GetChild(i).GetComponent<InventorySlot>();
+                    inventorySlot = transform.GetChild(0).GetChild(0).GetChild(1).GetChild(i).GetComponent<InventorySlot>();
                     inventorySlot.UpdateItemSlot();
                     break;
                 }
@@ -120,10 +120,11 @@ public class Inventory : MonoBehaviour
         activeSlots[0] = weaponSlot1;
         activeSlots[1] = weaponSlot2;
         activeSlots[2] = itemSlot1;
-        ammoText = transform.GetChild(0).GetChild(0).GetChild(4).GetChild(1).GetComponent<Text>();
-        bombsText = transform.GetChild(0).GetChild(0).GetChild(4).GetChild(2).GetComponent<Text>();
-        keysText = transform.GetChild(0).GetChild(0).GetChild(4).GetChild(3).GetComponent<Text>();
-        moneyText = transform.GetChild(0).GetChild(0).GetChild(4).GetChild(4).GetComponent<Text>();
+
+        ammoText = transform.GetChild(0).GetChild(0).GetChild(5).GetChild(1).GetComponent<Text>();
+        bombsText = transform.GetChild(0).GetChild(0).GetChild(5).GetChild(2).GetComponent<Text>();
+        keysText = transform.GetChild(0).GetChild(0).GetChild(5).GetChild(3).GetComponent<Text>();
+        moneyText = transform.GetChild(0).GetChild(0).GetChild(5).GetChild(4).GetComponent<Text>();
         ammoText.text = "Ammo: " + ammo;
         bombsText.text = "Bombs: " + bombs;
         keysText.text = "Keys: " + keys;
@@ -131,14 +132,14 @@ public class Inventory : MonoBehaviour
 
         for (int i = 0; i < 4; i++)         //Dette er oppdatering av inventory slots
         {
-            if( transform.GetChild(0).GetChild(0).GetChild(0).GetChild(i).GetComponent<InventorySlot>() != null)
+            if( transform.GetChild(0).GetChild(0).GetChild(1).GetChild(i).GetComponent<InventorySlot>() != null)
             {
-                inventorySlot = transform.GetChild(0).GetChild(0).GetChild(0).GetChild(i).GetComponent<InventorySlot>();
+                inventorySlot = transform.GetChild(0).GetChild(0).GetChild(1).GetChild(i).GetComponent<InventorySlot>();
                 inventorySlot.UpdateItemSlot();
             }
             
         }
-        for (int i = 1; i < 3; i++)         //Dette er oppdatering av Equipment slots
+        for (int i = 2; i < 5; i++)         //Dette er oppdatering av Equipment slots
         {
             if (transform.GetChild(0).GetChild(0).GetChild(i).GetComponent<InventorySlot>() != null)
             {

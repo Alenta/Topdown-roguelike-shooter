@@ -21,6 +21,7 @@ public class InventorySlot : MonoBehaviour {
         if (!equipmentSlot)
         {
             itemSlot = inventory.inventory[slotNr];
+            
             if (itemSlot != null)
             {
                 sprite.sprite = itemSlot.GetComponent<SpriteRenderer>().sprite;
@@ -30,11 +31,19 @@ public class InventorySlot : MonoBehaviour {
         else
         {
             itemSlot = inventory.activeSlots[slotNr];
+
             if (itemSlot != null)
             {
 
-                sprite.sprite = itemSlot.GetComponentInChildren<SpriteRenderer>().sprite;
-                sprite.enabled = true;
+                if(itemSlot.GetComponentInChildren<SpriteRenderer>().sprite != null)
+                {
+                    sprite.sprite = itemSlot.GetComponentInChildren<SpriteRenderer>().sprite;
+                    sprite.enabled = true;
+                }
+                else
+                {
+                    print("No sprite");
+                }
             }
         }
         

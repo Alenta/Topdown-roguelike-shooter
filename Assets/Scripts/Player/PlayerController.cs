@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour {
 	private Rigidbody2D rb;
 	public Vector2 thisVelocity;
     public Inventory inventory;
+    private InventorySelect inventorySelect;
     private GameObject inventoryUI;
     public BaseWeapon weapon;
     public GameObject weaponSlot1;
@@ -25,7 +26,7 @@ public class PlayerController : MonoBehaviour {
 	void Start () {
 		rb = GetComponent<Rigidbody2D>();
         playerStats = GetComponent<PlayerAttributes>();
-
+        inventorySelect = GetComponentInChildren<InventorySelect>();
         
         inventoryUI = this.transform.GetChild(0).GetChild(0).gameObject;
         canvas = inventoryUI.GetComponent<Canvas>();
@@ -39,6 +40,7 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetButtonDown("Inventory") && canvas.enabled == false)
         {
             //inventoryUI.SetActive(true);
+            inventorySelect.EnableInventory();
             inventory.UpdateActiveSlots();
             canvas.enabled = true;
             Time.timeScale = 0;
@@ -46,6 +48,7 @@ public class PlayerController : MonoBehaviour {
         else if (Input.GetButtonDown("Inventory") && canvas.enabled == true)
         {
             //inventoryUI.SetActive(false);
+            inventorySelect.DisableInventory();
             canvas.enabled = false;
             Time.timeScale = 1;
         }
@@ -128,6 +131,7 @@ public class PlayerController : MonoBehaviour {
             if (Input.GetKey("w"))
             {
                 rb.velocity = (movement * playerStats.moveSpeed);
+
             }
 
             if (Input.GetKey("s"))
